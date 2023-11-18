@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS选择器</title>
+    <style>
+        p{
+            text-align: center;   
+            color: blue;
+        }
+        #id1 {
+            text-align: center;   
+            color: red;
+        }
+        p.class1 {
+            text-align: center;   
+            color: green;
+        }
+        p.class2 {
+            font-size: 40px;
+        }
+        .class3 {
+            text-align: left;   
+            color: purple;
+        }
+        h2, h3 {
+            text-align: left;   
+            color: pink;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        CSS选择器用于查找或选取要设置的HTML元素
+        CSS选择器分类：
+            ·简单选择器（根据名称、id、类来选取元素）
+            ·组合器选择器（根据它们之间的特定关系来选取元素）
+            ·伪类选择器（根据特定状态选取元素）
+            ·伪元素选择器（根据特定状态选取元素）
+            ·属性选择器（根据属性或属性值来选取元素）
+        1.CSS 元素选择器：根据元素名称来选择 HTML 元素
+            p {
+                text-align: center;   
+                color: red;
+            }   /* 表示页面中所有p元素都会居中对齐，并带有红色文本颜色 */
+        2.CSS id选择器：使用 HTML 元素的 id 属性来选择特定元素
+            元素的 id 在页面中是唯一的，因此 id 选择器用于选择一个唯一的元素
+            要选择具有特定 id 的元素，请写一个井号（＃），后跟该元素的 id
+            #id1 {
+                text-align: center;   
+                color: red;
+            }   /* 表示选择了id为para1的元素 */
+        3.CSS类选择器：选择有特定 class 属性的 HTML 元素
+            如需选择拥有特定 class 的元素，请写一个句点 . 字符，后面跟类名
+            .class1{
+                text-align: center;   
+                color: red;
+            }   /* 表示只有 class="class1" 的 HTML 元素会被设置为该格式
+            p.class1{
+                text-align: center;   
+                color: red;
+            }   /* 表示只有 class="class1" 的 <p> 元素会被设置为该格式
+        4.CSS通用选择器：通用选择器 * 选择页面上的所有的 HTML 元素
+            * {
+                text-align: center;
+                color: blue;
+            }   /* 会影响页面上的每个 HTML 元素 */
+        5.CSS分组选择器：选取所有具有相同样式定义的 HTML 元素，可最大程度缩减代码
+            h1, h2, p {
+                text-align: center;
+                color: red;
+            }
+     -->
+    <p>一个纯粹的p标签段落</p>
+    <p id="id1">id为para1的段落1</p>
+    <p id="id1">id为para1的段落2</p>
+    <p class="class1">class为class1的p标签段落</p>
+    <h1 class="class1">class为class1的但不是p标签的段落</h1>
+    <h1 class="class3">class为class3的段落</h1>
+    <!-- HTML元素也可以引用多个类 -->
+    <p class="class1 class2">class为class1和class2的p标签段落</p>
+    <h2>h2会变成这样</h2>
+    <h3>h3也会变成这样</h3>
+</body>
+</html>

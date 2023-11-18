@@ -1,0 +1,96 @@
+1.solve:方程组求解函数
+    syms x; 
+    s = solve((x+2)*x==2, x);
+2.roots:返回根的列向量
+    R=roots(P)   % P为一个一元n次方程组的系数构成的行向量
+    例：求方程x^3+1=0的根
+        P=[1 0 0 1]
+        R=roots(P)
+3.fzero:[x,fval,exitflag]=fzero(fun,x0)   %求解fun = 0，在x0附近的近似实根
+        [x,fval,exitflag]=fzero(fun,[a,b])   %求在[a,b]附近的近似实根
+        x为解出来的最近值，fval为将x代入fun的值，exitflag为返回值，成功为1，失败为0
+    syms x;
+    f = 2*x^3-3*x^2+4*x-5;
+    fun = inline(vectorize(char(f)),'x');   % 将函数f向量化，一般还是建议用@(x)构造匿名函数
+    x = -5: 0.1: 10; 
+    plot(x, fun(x));
+    [x,val,flag] = fzero(fun, 2);
+    匿名函数实现：
+    syms x;
+    fun = @(x)2*x.^3-3*x.^2+4*x-5;
+    x = -5: 0.1: 10;
+    plot(x, fun(x));
+    [x,val,flag] = fzero(fun, 2);
+4.二分法的实现：可以求解代数方程或超越方程
+    function [x, n] = bisection(f, a, b, d)   % 保存后最好文件名和函数名一致在命令窗口中运行
+        fa = f(a); fb = f(b);
+        n = 1;   %计数器初始化
+        if fa*fb > 0,
+            error('所给区间内没有实数解！');
+        end
+        while 1   %未知循环次数，不好用for循环
+            c = (a + b)/2;
+            fc = f(c);
+            if abs(fc) < d,   %
+                x = c;
+            break;
+            elseif fa*fc < 0,
+                b = c;
+                fb = fc;
+            else
+                a = c;
+                fa = fc;
+            end
+            n = n+1;
+        end
+    %f是要求解的函数；a，b是求解区间；d是求解精度；输出x是方程近似根，n是迭代步数；
+    f = inline('x^4-3*x^3-1000', 'x');   %将字符串变成一个函数
+    ezplot(f);
+    [x,n] = bisection(f, -6, -2, 10^(-8));
+5.不动点迭代法：以迭代公式进行迭代求解的方法
+    function [root,n] = stablepoint_solver(phai, x0, tol)
+        if(nargin == 2)   %nargin表示输入参数的个数
+            tol = 1.0e-5;   %为误差设置一个默认值
+        end
+        err = 1;   %误差数据初始化
+        root = x0;
+        n = 0;
+        while(err > tol)
+            n = n + 1;   %迭代次数
+            r1 = root;
+            root = feval(phai, r1);   %计算函数值
+            err = abs(root - r1);
+        end
+    %root求解后的值；n为迭代次数；phai为迭代函数；x0位初始值；tol为误差；
+    ph = inline(‘(1 + x)^(1/3)’, ’x’);
+    [root, n] = stablepoint_solver(ph, 1)
+6.牛顿迭代法：将非线性方程逐步归结为某种线性方程求解
+    牛顿迭代公式：x(k + 1) = x(k) - f(x(k)) / f`(x(k))
+    函数定义：
+        function [fun, dfun] = fun0(x)   %fun为原函数，dfun为一阶导数
+        fun = x^3 - x - 1;
+        dfun = 3*x^2 - 1;
+    工作区操作：
+        clear
+        x0 = 1.5;
+        [fun, dfun] = fun0(x0);
+        x1 = x0 - fun/dfun;
+        i=1;
+        while abs(x1 - x0) > 1e-5   %表示10^(-5)
+            x0 = x1;
+            [fun, dfun] = fun0(x0);
+            x1 = x0 - fun/dfun;
+            i = i+1;
+        end
+        disp('the solution is x1=')  x1
+        disp('the iter time is ')  i
+7.曲线拟合：
+    1）多项式拟合函数：polyfit
+        p = polyfit(x, y, n)   %x,y为数据点，n为多项式阶数，返回p为幂次从高到低的多项式系数向量  假设p为[a,b,c] y = a*x^2+b*x+c
+    2）多项式求值函数：polyval()
+        y = polyval(p, x)   %y = polyval(p, x)为返回对应自变量x在给定系数P的多项式的值
+8.数据拟合：从一大堆看上去杂乱无章的数据中找出规律性来，即设法构造一条曲线（拟合曲线）反映所给数据点总的趋势，以消除其局部波动
+    常用拟合方法：多项式拟合
+    存在问题：并不是所有问题都可以用多项式作拟合，比如人口增长问题
+    举例：采用指数函数对人口增长模型进行拟合
+        N = exp(a + bt)，即lnN = a + bt，y = lnN = a+bt，再利用polifit拟合，得到N = exp(y)

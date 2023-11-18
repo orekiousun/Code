@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS轮廓</title>
+    <!-- 
+        轮廓是在元素周围绘制的一条线，在边框之外，以凸显元素
+        CSS拥有以下轮廓属性：
+            outline-style
+            outline-color
+            outline-width
+            outline-offset
+            outline
+        轮廓与边框不同，不同之处在于：轮廓是在元素边框之外绘制的，并且可能与其他内容重叠。同样，轮廓也不是元素尺寸的一部分；元素的总宽度和高度不受轮廓线宽度的影响
+        1.outline-style：轮廓样式
+            dotted - 定义点状的轮廓
+            dashed - 定义虚线的轮廓
+            solid - 定义实线的轮廓
+            double - 定义双线的轮廓
+            groove - 定义 3D 凹槽轮廓
+            ridge - 定义 3D 凸槽轮廓
+            inset - 定义 3D 凹边轮廓
+            outset - 定义 3D 凸边轮廓
+            none - 定义无轮廓
+            hidden - 定义隐藏的轮廓
+        2.outline-width：轮廓宽度
+            thin（通常为 1px）
+            medium（通常为 3px）
+            thick（通常为 5px）
+            特定尺寸（以 px、pt、cm、em 计）
+        3.outline-color：轮廓颜色
+            name - 指定颜色名，比如 "red"
+            HEX - 指定十六进制值，比如 "#ff0000"
+            RGB - 指定 RGB 值，比如 "rgb(255,0,0)"
+            HSL - 指定 HSL 值，比如 "hsl(0, 100%, 50%)"
+            invert - 执行颜色反转（确保轮廓可见，无论是什么颜色背景）
+        4.轮廓简写：
+            outline-width
+            outline-style（必需）
+            outline-color
+        5.outline-offset：在元素的轮廓与边框之间添加空间，元素及其轮廓之间的空间是透明的
+     -->
+    <style>
+        p.dotted {
+            outline-style: dotted; 
+            outline-width: thin; 
+            outline-color: red; 
+            border: 5px solid lightgrey;;
+        }
+        p.dashed {
+            outline-style: dashed; 
+            outline-width: medium; 
+            outline-color: invert; 
+            border: 5px solid lightgrey;
+        }
+        p.solid {
+            outline-style: solid; 
+            outline-width: thick; 
+            outline-color: rgb(255, 0, 0); 
+            border: 5px solid lightgrey;
+        }
+        p.double {
+            outline-style: double; 
+            outline-width: 6px; 
+            outline-color: hsl(0, 100%, 50%); 
+            border: 5px solid lightgrey;
+        }
+        p.groove {
+            outline-style: groove; 
+            outline-color: #ff0000; 
+            border: 5px solid lightgrey;
+        }
+        p.ridge {
+            outline-style: ridge; 
+            border: 5px solid lightgrey;
+        }
+        p.inset {
+            outline-style: inset; 
+            border: 5px solid lightgrey;
+        }
+        p.outset {
+            outline-style: outset; 
+            border: 5px solid lightgrey;
+        }
+        p.simplify{
+            outline: 5px solid royalblue;
+            border: 5px solid lightgrey;
+        }
+        p.offset {
+            outline: 5px solid royalblue;
+            border: 5px solid lightgrey;
+            outline-offset: 5px;
+        }
+    </style>
+    <!-- 
+        所有CSS轮廓属性：
+            outline	简写属性，在一条声明中设置 outline-width、outline-style 以及 outline-color
+            outline-color	设置轮廓的颜色
+            outline-offset	指定轮廓与元素的边缘或边框之间的空间
+            outline-style	设置轮廓的样式
+            outline-width	设置轮廓的宽度
+     -->
+</head>
+<body>
+    <p class="dotted"> dotted outline </p>
+    <p class="dashed"> dashed outline</p>
+    <p class="solid"> solid outline </p>
+    <p class="double"> double outline</p>
+    <p class="groove"> groove outline</p>
+    <p class="ridge"> ridge outline</p>
+    <p class="inset"> inset outline </p>
+    <p class="outset"> outset outline </p>
+    <p class="simplify"> simplify outline </p>
+    <p class="offset"> offset outline </p>
+</body>
+</html>

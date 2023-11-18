@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS颜色</title>
+</head>
+<body>
+    <!--
+        1.CSS颜色名：CSS/HTML 支持140种标准颜色名，可使用颜色名称来指定颜色
+            Tomato，Orange，DodgerBlue
+      -->
+    <!-- 
+        2.CSS背景色：可为 HTML 元素设置背景色
+     -->
+    <p style="background-color:dodgerblue;">Dodgerblue background-color</p>
+    <p style="background-color: tomato;">Tomato background-color</p>
+    <!-- 
+        3.CSS文本颜色
+     -->
+     <p style="color: green;">Green Text</p>
+    <!-- 
+        4.CSS边框颜色
+     -->
+    <p style="border: 4px solid red;">Red 4px Border</p>
+    <p style="border: 2px solid yellow;">Yellow 2px Border</p>
+    <!-- 
+        5.CSS颜色值
+            可以使用 RGB 值、HEX 值、HSL 值、RGBA 值或者 HSLA 值来指定颜色
+            其中 RGBA 和 HSLA 中的 A 表示 alpha 通道不透明度，
+            HEX：使用16进制指定颜色 #xxxxxx，每两位分别表示一个 RGB 数字的大小
+            HSL:
+                色相（hue）是色轮上从 0 到 360 的度数。0 是红色，120 是绿色，240 是蓝色
+                饱和度（saturation）是一个百分比值，0％ 表示灰色阴影，而 100％ 是全色
+                亮度（lightness）也是百分比，0％ 是黑色，50％ 是既不明也不暗，100％是白色
+     -->
+    <p style="background-color: rgb(255, 99, 71);">RGB Test: rgb(255, 99, 71)</p>
+    <p style="background-color: #ff6347;">HEX Test: #ff6347</p>
+    <p style="background-color: hsl(9, 100%, 64%);">HSL Test: hsl(9, 100%, 64%)</p>
+    <p style="background-color: rgba(255, 99, 71, 50%);">RGBA Test: rgb(255, 99, 71, 50%)</p>
+    <p style="background-color: hsla(9, 100%, 64%, 50%);">HSLA Test: hsl(9, 100%, 64%, 50%)</p>
+</body>
+</html>

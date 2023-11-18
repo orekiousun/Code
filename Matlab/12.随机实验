@@ -1,0 +1,60 @@
+rand：生成0-1区间上均匀的随机数
+    rand(m) 生成m*m维的随机数
+    rand(m,n) 生成m*n维的随机数
+    rand([m,n,p ...]) 生成排列成m*n*p... 多维向量的随机数
+    举例：
+         a+(b-a)*rand(m, n)   % 生成区间【a, b】上的随机数
+1.利用蒙特卡罗方法估计圆周率：在图像中随机投点，落入阴影部分的点的个数占总体的比例作为面积
+    n=input('请输入产生点的个数：');
+    m=0;
+    for i=1:n
+    x=-1+2*rand; y=-1+2*rand;
+    if x^2+y^2<=1
+    m=m+1;
+    end
+    end
+    mypi=4*m/n
+2.曲线所围面积
+    用随机模拟方法估算两条抛物线y =x^2 , x=y^2所围图形的面积
+    N=1000;
+    data=rand(N,2);
+    x=data(:,1);
+    y=data(:,2);
+    II=find(y<=sqrt(x)&y>=x.^2);   %  find可以返回符合条件的函数的索引
+    M=length(II);
+    S=M/N
+3.估算二重积分
+    计算二重积分 xy^2dxdy,其中D为y=x-2与y^2=x所围区域
+    for k=1:7
+    %多次模拟
+    V1(k)=mysim(N);
+    end
+    V1
+    function v =mysim(N)
+    V2 = 192; %V=4*3*16
+    d = rand(N,3); 
+    x = 4*d(:,1);
+    y =-1+3*d(:,2); 
+    z =16*d(:,3);
+    %下面表达式可结合find和length完成
+    M =sum((x>=y.^2) & (x<=y+2) & (z<=x.*y.^2) );   % 为符合条件的点计数
+    v =V2*M/N;
+4.求解优化模型
+    可在可行域内随机投点，比较各点处函数值的大小找到最小值
+    function y=myfun(x)
+    y=3*(x(1)-1).^2 + 4*(x(2)-2).^2;
+    function opt
+    n = 1e5; %随机点个数
+    fobj = inf;
+    for i = 1:n,
+    x(1) = 3*rand; x(2) = 5*rand;
+    if myfun(x) < fobj, %找"最小值"
+    fx = x; 
+    fobj = myfun(x);
+    end
+    end
+    %返回近似最优解
+    fx %变量x1,x2取值
+    fobj %对应函数值
+
+    % 命令行输入myfun(x)

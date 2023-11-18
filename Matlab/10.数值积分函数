@@ -1,0 +1,89 @@
+1.梯形法求解积分：trapz
+    Q = trap(X,Y)   %计算y对x的梯形积分
+2.基于变长simpso法求积分：quad
+    q = quad(fun, a, b, tol)   %fun被积函数文件名或函数句柄；a，b表示积分下限和上限；tol积分精度
+3.高精度Lobatto积分法：quadl
+4.矩形区域二重数值积分：dblquad
+    q = dblquad(fun, a, b, c, d, tol)   %fun被积函数文件名或函数句柄；a，b第一个自变量积分下限和上限；c，d第二个自变量积分下限，积分上限；tol积分精度
+    对于非矩形区域二重积分：
+        fun = @(x, y) x.^2 + y;
+        ymax = @(x) 1 - x;   %ymax不能定义为inline
+        quad2d(fun, 0, 1, 0, ymax)
+5.求解微分方程
+    ode23：显式的单步Runge-Kutta低阶（2阶到3阶）解法。适用具有一定难度对精度要求不高，或者f(t,y)不平滑（非连续）的问题
+        1）用函数文件定义一阶微分方程（组）右端函数
+        2）用Matlab命令ode23()求数值解
+            [T,Y] = ode23('F', Tspan, y0)
+                T相当于求解后结果的x轴，Y为y轴
+                'F'为包括函数文件名字的字符串或函数句柄
+                Tspan=[t0, tN]是常微分方程求解区域
+                y0表示初始条件
+            编辑器：
+                function dfun=fun(t,N)
+                dfun=0.015*N;
+            命令行：
+                [t,N]=ode23(@fun, [1994,2021], 12)
+                plot(t, N, 'o');
+6.求解常微分方程组
+    [T, Y] = ode23('F', Tspan, y0)
+        'F'返回常微分方程组右端组成的列向量，y0为列向量，Tspan表示求解区域
+        T, Y是求解区域内离散数据对应数值解
+        function fun
+            y0 = [0;2];
+            tn = [0,3];
+            [t,y] = ode23(@fun2,tn,y0);
+            plot(t, y(:, 1), 'o', t, y(:,2), 'o');
+            xlabel('t');
+            ylabel('y_1 and y_2');
+            legend('y_1', 'y_2');
+            function dfun = fun2(t,y)   % 子函数
+                dfun=[-y(1)*exp(1-t) + 0.8*y(2);
+                    y(1) - y(2)^3];
+示例：求解二阶微分方程   d2y-u(1-y^2)dy+y=0   y(0)=1;dy(0)=0
+    y(1)=y;   y(2)=dy/dt;   dy(1)=y(2);   dy(2)=u*(1-y(1)^2)*y(2)-y(1);
+    function test
+        y0=[1;0];
+        tn=[0,20];
+        [t,y]=ode45(@vdpol,tn,y0);
+        plot(t,y(:,1),t,y(:,2), '--')
+        xlabel('t');ylabel('y_1 and y_2');
+        legend('y_1', 'y_2')
+        function dfun=vdpol(t,y)
+            u=2;
+            dfun=[y(2);u*(1-y(1)^2)*y(2)-y(1)];
+7.解微分方程的Euler法(欧拉法)
+    function [t,y]=odeEuler(diffeq,tn,h,y0)   #diffeq为包括函数文件名字的字符串或函数句柄，tn=t1-t0，h为步长，y0为初始值
+        t=(0:h:tn)';
+        n=length(t);
+        y=y0*ones(n,1);
+        for k=2:n
+        y(k)=y(k-1)+h*feval(diffeq,t(k-1),y(k-1));
+        end
+    调用：
+    function [t,y]=demoEuler(h)
+        tn=2;y0=1;
+        [t,y]=odeEuler(@rhs,tn,h,y0);   %rhs为求解函数，tn=t1-t0，h为步长，y0为初始值
+        yex=(2*t-1+5*exp(-2*t))/4;   %精确解，原函数
+        function dydt=rhs(t,y)   %单独保存
+            dydt=t-2*y; 
+8.微分方程数值解：
+    dx=x-0.015xy x(0)=100
+    dy=-y+0.01xy y(0)=20
+    求当x(t),y(t)当t在[0,20]时的数据
+    示例；
+    function z=fox(t,y)
+        z(1,:)=y(1)-0.015*y(1).*y(2);
+        z(2,:)=-y(2)+0.01*y(1).*y(2);
+        Y0=[100; 20];
+        [t,Y]=ode23('fox',[0,20],Y0);
+        x=Y(:,1);y=Y(:,2);
+        figure(1),plot(t,x,'b',t,y,'r')
+        figure(2),plot(x,y)
+
+
+
+
+
+
+
+        

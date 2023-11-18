@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS-display</title>
+    <!-- 
+        1.display 属性：规定是否/如何显示元素
+            每个 HTML 元素都有一个默认的 display 值，具体取决于它的元素类型。大多数元素的默认 display 值为 block 或 inline。
+        2.块级元素（block element）：块级元素总是从新行开始，并占据可用的全部宽度（尽可能向左和向右伸展）
+            <div>
+            <h1> - <h6>
+            <p>
+            <form>
+            <header>
+            <footer>
+            <section>
+        3.行内元素（inline element）：内联元素不从新行开始，仅占用所需的宽度
+            <span>
+            <a>
+            <img>
+        4.display: none：通常与 JavaScript 一起使用，以隐藏和显示元素，而无需删除和重新创建它们
+        5.覆盖默认的 Display 值：
+            display: inline;   /* 将块元素改为行内元素 */
+            display: block;   /* 将行内元素改为块元素 */
+        6.两种隐藏元素的区别：
+            display: none;   /* 该元素将被隐藏，并且页面将显示为好像该元素不在其中 */
+            visibility: hidden;   /* 元素将被隐藏，但仍会影响布局 */
+     -->
+    <style>
+        li.inline,p {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1> block: </h1>
+    <ul>
+        <li><a href="/html/default.asp" target="_blank">HTML</a></li>
+        <li><a href="/css/default.asp" target="_blank">CSS</a></li>
+        <li><a href="/js/default.asp" target="_blank">JavaScript</a></li>
+    </ul>
+    <h1> inline: </h1>
+    <ul>
+        <li class="inline"><a href="/html/default.asp" target="_blank">HTML</a></li>
+        <li class="inline"><a href="/css/default.asp" target="_blank">CSS</a></li>
+        <li class="inline"><a href="/js/default.asp" target="_blank">JavaScript</a></li>
+    </ul>
+    <p> display: </p>
+    <p style="display: none;"> element1-display: none; </p>
+    <p> visibility: </p>
+    <p style="visibility: hidden;"> element2-visibility: hidden; </p>
+    <p> element3-exist </p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+MatLab优化工具箱主要命令：
+    fminbnd()：求单变量无约束（箱约束，边界约束）最优化问题
+        黄金分割法，抛物线插值法
+    fminsearch()：求解多变量无约束最优化问题
+        基于免导数的算法：Nelder-Mead单纯形方法
+    fminunc()：求解多变量无约束最优化问题
+        基于导数的算法：拟牛顿方法、信赖域方法
+    linprog()：求解线性规划问题
+        内点法、（对偶）单纯形法、有效集法
+    intlinprog()：求解混合整数线性规划问题
+        分支定界法
+    fmincon()：求解多变量有约束最优化问题
+        信赖域法、有效集法、内点法、序列二次规划
+    ga()：求解困难、复杂、多态最优化问题的全局最优解
+        遗传算法
+1.一元函数极值求解函数fminbnd：
+    [xmin, ymin] = fminbnd(fun, x1, x2)   % fun是目标函数，[x1，x2]是搜索区间，xmin、ymin分别是目标函数的极小点、极小值
+    举例：
+        fun = inline('0.5-x*exp(-x^2)');   % inline可以将字符串转化为函数
+        ezplot(fun, [0, 2]), hold on
+        [xmin, ymin] = fminbnd(fun,0,2)
+        plot(xmin,ymin, 'r*')
+        # 也可以通过直接求解导函数的方法得到结果
+2.线性规划问题linprog
+    使用格式：
+    1）x = linprog(C, A, b)   [x,fval] = linprog(C, A, b)
+    2）x = linprog(c,A,b,Aeq,beq)   [x,fval] = linprog(c,A,b,Aeq,beq)
+    3）x = linprog(c,A,b,Aeq,beq,Lb,Ub)   [x, fval] = linprog(c,A,b,Aeq,beq,Lb,Ub)
+    举例：
+        约束条件为：
+            x1 + x2 >= 5000
+            x1      <= 5000
+                 x2 <= 3000
+            x1      >= 0
+                 x2 >= 0 
+            使目标函数z = 500x1 + 600x2最大
+        转化为标准形式：
+           -x1 - x2 <= 5000
+            x1      <= 5000
+                 x2 <= 3000
+           -x1      <= 0
+                -x2 <= 0    % 全部换为小于
+        写出相关矩阵：
+            C = [-500,-600];
+            A = [-1,-1;1,0;0,1];
+            b = [-5000;5000;3000];
+        代码：
+            C = [-500,-600];
+            A = [-1,-1;1,0;0,1];
+            b = [-5000;5000;3000];
+            Aeq = [];
+            beq = [];
+            Lb = [0; 0];
+            Ub = [inf; inf];
+            x = linprog(-C, A, b, Aeq, beq, Lb, Ub)
+            z = C*x

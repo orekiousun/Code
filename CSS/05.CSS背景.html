@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS背景</title>
+    <!-- CSS
+        1.background-color：指定元素的背景色 
+        2.opacity：指定元素的不透明度/透明度，取值范围为 0.0 - 1.0
+            也可使用 rgba 直接设置透明度
+        3.background-image：指定用作元素背景的图像
+            默认情况下，图像会重复，以覆盖整个元素
+        4.background-repeat：
+            默认情况下，background-image 属性在水平和垂直方向上都重复图像
+            通过background-repeat可设置只在水平或垂直方向重复图像，也可以只显示一次图像
+        5.background-position：用于指定背景图像的位置
+        6.background-attachment：指定背景图像是应该滚动还是固定的（不会随页面的其余部分一起滚动）
+            fixed:指定应该固定背景图像
+            scroll:指定背景图像应随页面的其余部分一起滚动
+        7.背景简写：
+            可以在一个属性中指定所有背景属性，它被称为简写属性
+            body {
+                background: #ffffff url("tree.png") no-repeat right top;
+            }
+            简写时，属性值的顺序为：
+                background-color
+                background-image
+                background-repeat
+                background-attachment
+                background-position
+            缺失并不要紧，只要按照此顺序设置其他值即可
+    -->
+    <!-- 
+        所有CSS背景属性：
+            background	在一条声明中设置所有背景属性的简写属性
+            background-attachment	设置背景图像是固定的还是与页面的其余部分一起滚动
+            background-clip	规定背景的绘制区域
+            background-color	设置元素的背景色
+            background-image	设置元素的背景图像
+            background-origin	规定在何处放置背景图像
+            background-position	设置背景图像的开始位置
+            background-repeat	设置背景图像是否及如何重复
+            background-size	规定背景图像的尺寸
+        可在帮助文件中查看
+     -->
+    <style>
+        body {
+            background-image: url(../VSCode壁纸.png);
+            background-repeat: repeat-y;
+            background-position: left;
+            background-attachment: scroll;
+        }
+        h1 {
+            background-color: lightblue;
+            opacity: 70%;
+        }   
+        /* body将作用于整个网页 */
+        h2 {
+            background-image: url(../HTML/资源/图片/bilibili抠像.png);
+            background-attachment: fixed;
+        }
+        h3 {
+            background-image: url(../HTML/资源/图片/bilibili抠像.png);
+            background-attachment: scroll;
+        }
+        h4 {
+            background: url(../HTML/资源/图片/bilibili抠像.png) repeat-y;
+        }
+    </style>
+</head>
+<body>
+    <h1>这是一个p标签</p>
+    <h2>这是一个背景填充后并固定的h2标签</h2>
+    <h3>这是一个背景填充后跟随滑动的h3标签</h3>
+    <h4>这是一个简写后h4标签</h4>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个p标签</p>
+    <h1>这是一个很长。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。的p标签</p>
+</body>
+</html>

@@ -1,0 +1,66 @@
+1.plot:基本绘图方法，利用一元函数自变量的一系列数据和对应函数值数据绘图。具有很大灵活性
+    x,y为参数，r表示线是红色,r-表示线是虚线
+        ·plot(x, y)
+        ·plot(x, y, 'r-')
+        ·plot(x1, y1, x2, y2)
+        ·plot(x1, y1, 'r', x2, y2, 'b')
+        legend('', '')按照参数顺序解释图像
+2.ezplot：简易函数绘图方法，优点：快速方便
+    可以不设置参数，ezplot会自动设置，参数只用函数就可
+        ·ezplot(f, [xmin,xmax,ymin,ymax])s
+3.fplot： 函数绘图方法,与ezplot相似
+    必须有左右边界
+        ·(f, [xmin,xmax])
+4.polar：极坐标绘图命令
+        ·polar(theta, rho, 'r.')
+5.bar：绘条形图命令
+    画柱状图，如果参数为矩阵，按行分别画
+        ·bar(x, y)
+6.bar3：三维条形图绘制命令
+        bar3(x, y)
+7.legend：在图形上生成一个图例框，用户可以输入任何文本对图形进行注释
+    legend('', '')按照参数顺序解释图像
+8.title：在图形顶部添加标题
+    x=linspace(0, 2*pi, 30);
+    y=sin(x);
+    z=cos(x);
+    plot(x, y, x, z)
+    legend('sin(x)', 'cos(x)')
+    title('Figure: Legend Example')
+9.plot3：空间曲线绘制
+    步骤：1.生成平面网格 2.计算网格上函数值 3.绘制网面
+        ·plot3(x1, y1, z1, S1, x2, y2, z2, S2)
+        ·生成平面网格点命令: [X, Y]=meshgrid(x, y)
+10.创建网格矩阵的原理和方法：
+    x=1:6; y=1:8;  %创建两个向量
+    [X, Y]=meshgrid(x, y)  %将x和y分别扩充为8行6列
+    [X, Y]=meshgrid(1:6, 1:8)  %直接创建两个矩阵X和Y
+11.surf()：填颜色函数
+    colormap([0.5, 0.2, 0.5])通过参数设置填充颜色（RGB）
+12.subplot：创建多个图
+    (m, n, num)m,n表示图标的行列数，num表示在第num位置画图
+        ·subplot(1, 2, 2)  %表示有一行两列，在第二个图位置画图
+13.meshc,meshcz:绘制网格
+    绘二元函数z = x exp(–x^2 – y^2)的图形
+        [x, y]=meshgrid(-2: 0.2: 2);
+        z = x.*exp(-x.^2-y.^2);
+        subplot(1, 2, 1)
+        meshc(x, y, z)
+        title('Figure 1:mesh plot with Contours')
+        subplot(1, 2, 2)
+        meshz(x, y, z)
+        title('Figure 2:mesh plot with Zero Plan')
+14.contour，和countour3：等高线图
+    绘二元函数图形z = x exp(–x^2 – y^2)的等高线
+        [x, y]=meshgrid(-2: 0.2: 2);
+        z = x.*exp(-x.^2-y.^2);
+        subplot(1, 2, 1)
+        contour(x, y, z, 20)
+        title('Figure 1: 2-D Contour Plot')
+        subplot(1, 2, 2)
+        contour3(x, y, z, 20)
+        title('Figure 2: 3-D Contour Plot')
+
+    
+
+

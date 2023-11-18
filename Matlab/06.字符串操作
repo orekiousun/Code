@@ -1,0 +1,14 @@
+1.str2num，num2str：字符串与数字数组转换函数
+    v = ([1: 0.5: 2]*pi)
+    str = num2str(v)   % 数字转字符串
+    v2 = str2num(str)    % 字符串转数字    
+    err = v2-v
+2.strcat，strvcat：字符串拼接函数
+    ·strcat('MAT', 'LAB')  %输出MATLAB字符串
+    ·strvcat('MAT', 'MATLAB')  %输出MAT MATLAB的char数组
+3.strtok：字符串分割提取
+    ·[token, remain]=strtok(str, delim)
+        将str中以delim当中的一个字符作为分隔符进行分割后所得的第一个标识符赋给token，其余赋给remain
+        若delim没有指定，则默认空格作为分隔符；若此时str为空格置顶的字符串，则该置顶空格被忽略
+4.findstr,strfind：字符串查找
+    ·k=findstr(S1, S2)  %找到S1和S2两者中较短那个字符串在较长字符串中的位置起始索引号

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS列表</title>
+    <!-- 
+        HTML 列表和 CSS 列表属性：
+            无序列表（<ul>）- 列表项用的是项目符号标记
+            有序列表（<ol>）- 列表项用的是数字或字母标记
+        可进行的操作：
+            为有序列表设置不同的列表项标记
+            为无序列表设置不同的列表项标记
+            将图像设置为列表项标记
+            为列表和列表项添加背景色
+        1.不同的列表项标记
+            list-style-type: circle;   /* 圆形标记 */
+            list-style-type: square;   /* 方形标记 */
+            list-style-type: upper-roman;   /* 罗马序号-有序列表 */
+            list-style-type: lower-alpha;   /* 字符序号-无序列表 */
+            list-style-type:none;   /* 用于删除标记/项目符号 */
+            /* 注意，列表还拥有默认的外边距和内边距。要删除此内容，请在 <ul> 或 <ol> 中添加 margin:0 和 padding:0 */
+            ...
+        2.list-style-image：将图像指定为列表标记
+            list-style-image: url('sqpurple.gif');
+
+        3.list-style-position：指定列表项标记（项目符号）的位置
+            list-style-position: outside;   /* 表示项目符号点将在列表项之外，列表项每行的开头将垂直对齐，这是默认的方式 */
+            list-style-position: inside;   /* 表示项目符号将在列表项内，由于它是列表项的一部分，因此它将成为文本的一部分，并在开头推开文本 */
+
+        4.列表简写属性，顺序为：
+            list-style-type（如果指定了 list-style-image，那么在由于某种原因而无法显示图像时，会显示这个属性的值）
+            list-style-position（指定列表项标记应显示在内容流的内部还是外部）
+            list-style-image（将图像指定为列表项标记）
+                list-style: square inside url("sqpurple.gif");
+        
+        5.设置列表的颜色样式
+            ol {
+                background: #ff9999;
+                padding: 20px;
+            }
+            ol li {
+                background: #ffe5e5;
+                padding: 5px;
+                margin-left: 35px;
+            }
+    --> 
+    <style>
+        /* list-style-type test */
+        ul.circle {
+            list-style-type: circle;
+        }
+        ul.square {
+            list-style-type: square;
+        }
+        ol.upper-roman {
+            list-style-type: upper-roman;
+        }
+        ol.lower-alpha {
+            list-style-type: lower-alpha;
+        }
+        ul.none {
+            list-style-type:none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* list-style-image test */
+        ul.image {
+            list-style-image: url(../HTML/资源/图片/bilibili.png);
+        }
+
+        /* list-style-position test */
+        ul.outside {
+            list-style-position: outside;
+        }
+        ul.inside {
+            list-style-position: inside;
+        }
+        li {
+            width: 400px;
+        }
+
+        /* list-style simplify test */
+        ol.simplify {
+            list-style: circle inside url(../HTML/资源/图片/bilibili.png);
+        }
+
+        /* colorful test */
+        ol.colorful {
+            background-color: rgb(255, 106, 130);
+            padding: 20px;
+            width:400px;
+        }
+        li.colorful {
+            background-color: rgb(255, 230, 230);
+            margin: 5px;
+        }
+    </style>
+    <!-- 
+        所有CSS列表属性：
+            list-style	简写属性。在一条声明中设置列表的所有属性
+            list-style-image	指定图像作为列表项标记
+            list-style-position	规定列表项标记（项目符号）的位置
+            list-style-type	规定列表项标记的类型
+     -->
+</head>
+<body>
+    <!-- list-style-type test -->
+    <ul class="circle">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>
+    </ul>
+    <ul class="square">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>        
+    </ul>
+    <ol class="upper-roman">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>        
+    </ol>
+    <ol class="lower-alpha">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>
+    </ol>
+    <ul class="none">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>
+    </ul>
+
+    <!-- list-style-image test -->
+    <ul class="image">
+        <li>Coffee</li>
+        <li>Tea</li>
+        <li>Coca Cola</li>
+    </ul>
+
+    <!-- list-style-position test -->
+    <h1> list-style-position: outside </h1>
+    <ul class="outside">
+        <li>咖啡-用烘焙过的咖啡豆制成的冲泡饮料，烘焙过的咖啡豆是来自咖啡植物的浆果的种子</li>
+        <li>茶-一种芳香饮料，通常通过将热水或沸水倒在茶树的固化叶子上而制得，茶树是一种原产于亚洲的常绿灌木（灌木）</li>
+        <li>可口可乐-由可口可乐公司生产的碳酸软饮料。该饮料的名称指的是其两种原始成分，即可乐果（一种咖啡因）和古柯叶。</li>
+    </ul>
+    <h1> list-style-position: inside; </h1>
+    <ul class="inside">
+        <li>咖啡-用烘焙过的咖啡豆制成的冲泡饮料，烘焙过的咖啡豆是来自咖啡植物的浆果的种子</li>
+        <li>茶-一种芳香饮料，通常通过将热水或沸水倒在茶树的固化叶子上而制得，茶树是一种原产于亚洲的常绿灌木（灌木）</li>
+        <li>可口可乐-由可口可乐公司生产的碳酸软饮料。该饮料的名称指的是其两种原始成分，即可乐果（一种咖啡因）和古柯叶。</li>
+    </ul>
+
+    <!-- list-style simplify test -->
+    <ol class="simplify">
+        <li>咖啡-用烘焙过的咖啡豆制成的冲泡饮料，烘焙过的咖啡豆是来自咖啡植物的浆果的种子</li>
+        <li>茶-一种芳香饮料，通常通过将热水或沸水倒在茶树的固化叶子上而制得，茶树是一种原产于亚洲的常绿灌木（灌木）</li>
+        <li>可口可乐-由可口可乐公司生产的碳酸软饮料。该饮料的名称指的是其两种原始成分，即可乐果（一种咖啡因）和古柯叶。</li>
+    </ol>
+
+    <!-- colorful test -->
+    <ol class="colorful"> 
+        <li class="colorful">Coffee</li>
+        <li class="colorful">Tea</li>
+        <li class="colorful">Coca Cola</li>
+    </ol>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS框模型</title>
+    <!-- 
+        CSS 框模型实质上是一个包围每个 HTML 元素的框。它包括：外边距、边框、内边距以及实际的内容
+        元素总宽度 = 宽度 + 左内边距 + 右内边距 + 左边框 + 右边框 + 左外边距 + 右外边距
+        元素总高度 = 高度 + 上内边距 + 下内边距 + 上边框 + 下边框 + 上外边距 + 下外边距
+        1.外边距margin
+            1)margin：用于在任何定义的边框之外，为元素周围创建空间，可通过 margin-top，margin-right，margin-bottom，margin-left指定每一侧外边距的属性
+                可设置为以下值：
+                    auto - 浏览器来计算外边距
+                    length - 以 px、pt、cm 等单位指定外边距
+                    % - 指定以包含元素宽度的百分比计的外边距
+                    inherit - 指定应从父元素继承外边距
+            2)margin简写属性：可以在一个属性中指定所有外边距属性 
+                margin: 25px 50px 75px 100px   /* 代表上右下左外边距分别为25px，50px，75px，100px */
+            3)auto值：
+                将 margin 属性设置为 auto，以使元素在其容器中水平居中，然后，将该元素将占据指定的宽度，并且剩余空间将在左右外边界之间平均分配
+            4)inherit：
+                可以使嵌套的内标签继承外标签的外边框属性
+            5)外边距合并：
+                当两个垂直外边距相遇时，它们将形成一个新的外边距，合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者
+                只有普通文档流中块框的垂直外边距才会发生外边距合并。行内框、浮动框或绝对定位之间的外边距不会合并
+
+        2.边框border
+            1)border-style:指定要显示的边框类型
+                dotted - 定义点线边框
+                dashed - 定义虚线边框
+                solid - 定义实线边框
+                double - 定义双边框
+                groove - 定义 3D 坡口边框。效果取决于 border-color 值
+                ridge - 定义 3D 脊线边框。效果取决于 border-color 值
+                inset - 定义 3D inset 边框。效果取决于 border-color 值
+                outset - 定义 3D outset 边框。效果取决于 border-color 值
+                none - 定义无边框
+                hidden - 定义隐藏边框
+                border-style 属性可以设置一到四个值（用于上边框、右边框、下边框和左边框）
+            2)border-color:设置四个边框的颜色,可以通过以下方式设置颜色：
+                name - 指定颜色名，比如 "red"
+                HEX - 指定十六进制值，比如 "#ff0000"
+                RGB - 指定 RGB 值，比如 "rgb(255,0,0)"
+                HSL - 指定 HSL 值，比如 "hsl(0, 100%, 50%)"
+                transparent
+            3)border-top-style:指定每个边框（顶部、右侧、底部和左侧），可以分别设置一条边的样式
+                边框简写：
+                    简写顺序
+                    border-width
+                    border-style（必需）
+                    border-color
+                也可以只对一边简写
+            4)border-radius:用于向元素添加圆角边框
+                border-radius: 5px;   /* 设置圆度 */
+
+            注意背景只会填充在边框以内的区域！！！
+        
+        3.内边距padding
+            1)padding：用于在任何定义的边界内的元素内容周围生成空间，可以完全控制内边距,可以分别设置padding-top，padding-right，padding-bottom，padding-left的内边距属性
+            内边距属性可以是以下值：
+                length - 以 px、pt、cm 等单位指定内边距
+                % - 指定以包含元素宽度的百分比计的内边距
+                inherit - 指定应从父元素继承内边距
+            2)padding简写属性：可以在一个属性中指定所有内边距属性
+                padding: 30px 50px 30px 50px   /* 代表上右下内外边距分别为30px，50px，30px，50px */
+            3)width：指定元素内容区域的宽度，内容区域是元素（盒模型）的内边距、边框和外边距内的部分
+                因此，如果元素拥有指定的宽度，则添加到该元素的内边距会添加到元素的总宽度中，总宽度会改变（加上外边距）
+            4)box-sizing：将标签的宽度固定为在width属性中设置的值，不会和内边距相加
+                box-sizing: border-box
+                
+        4.实际内容宽度width+height
+            1)height 和 width 属性用于设置元素的高度和宽度
+                height 和 width 属性不包括内边距、边框或外边距，它设置的是元素内边距、边框以及外边距内的区域的高度或宽度
+            2)height 和 width 属性可设置如下值：
+                auto - 默认，浏览器计算高度和宽度
+                length - 以 px、cm 等定义高度/宽度
+                % - 以包含块的百分比定义高度/宽度
+                initial - 将高度/宽度设置为默认值
+                inherit - 从其父值继承高度/宽度
+            3)max-width：用于设置元素的最大宽度
+                当浏览器窗口小于元素的宽度时，浏览器会将水平滚动条添加到页面，
+                利用max-width可以有效限制窗口大小，当缩小浏览器窗口时，缩小到固定值将无法继续缩小，不会添加水平滚条
+     -->
+    <style>
+        /* margin test */
+        p.margin-normal {
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-right: 150px;
+            margin-left: 80px;
+            border: 1px solid black;
+            background-color: lightblue;
+        }
+        p.margin-simplify {
+            margin: 25px 50px 75px 100px;
+            border: 1px solid black;
+            background-color: lightblue;
+        }
+        p.margin-auto {
+            margin: auto;
+            border: 1px solid black;
+            width: 200px;
+        }
+        div.margin-div {
+            border: 1px solid red;
+            margin-left: 100px;
+        }
+        p.margin-inherit {
+            margin-left: inherit;
+        }
+
+        /* border test */
+        p.border-dotted {
+            border-style: dotted;
+            border-color: red;
+        }
+        p.border-dashed {
+            border-style: dashed;
+            border-color: #ff0000;
+        }
+        p.border-solid {
+            border-style: solid;
+            border-color: rgb(255, 0, 0);
+        }
+        p.border-double {
+            border-style: double;
+            border-color: hsl(0, 100%, 50%);
+        }
+        p.border-groove {
+            border-style: groove;
+            border-color: red green blue yellow;
+            /* 上红 右绿 下蓝 左黄 */
+        }
+        p.border-ridge {
+            border-style: ridge;
+            border-radius: 8px;
+        }
+        p.border-inset {
+            border-style: inset;
+            border-radius: 15px;
+        }
+        p.border-outset {
+            border-style: outset;
+        }
+        p.border-none {
+            border-style: none;
+        }
+        p.border-hidden {
+            border-style: hidden;
+        }
+        p.border-mix {
+            border-style: dotted dashed solid double;
+        }
+        p.border-mix2 {
+            border-top-style: dotted;
+            border-right-style: double;
+            border-bottom-style: groove;
+            border-left-style: solid;
+        }
+        p.border-simplify {
+            border: 8px dotted blue;
+        }
+        p.border-simplify2 {
+            border-left: 4px solid red;
+            background-color: lightgrey;
+        }
+
+        /* padding test */
+        p.padding-normal {
+            padding-top: 50px;
+            padding-right: 30px;
+            padding-bottom: 50px;
+            padding-left: 30px;
+            border: 1px solid black;
+        }
+        p.padding-simplify {
+            padding: 30px 50px 30px 50px;
+            border: 1px solid black;
+        }
+        p.padding-width {
+            width: 200px;
+            padding: 30px 50px 30px 50px;
+            border: 1px solid black;
+        }
+        p.padding-box-sizing {
+            width: 200px;
+            padding: 30px 50px 30px 50px;
+            border: 1px solid black;
+            box-sizing: border-box;
+            /* 次方法总宽度为200px */
+        }
+
+        /* content test */
+        div.content-normal {
+            height: 200px;
+            width: 80%;
+            background-color: lightblue;
+        }
+        div.content-max-width {
+            height: 200px;
+            max-width: 500px;
+            background-color: lightblue;
+        }
+
+        /* total test */
+        div.total {
+            background-color: lightgrey;
+            width: 300px;
+            border: 15px solid green;
+            padding: 50px;
+            margin: 20px;
+        }
+    </style>
+    <!-- 
+        所有CSS框属性
+            1.外边距margin
+                margin	用于在一条声明中设置外边距属性的简写属性
+                margin-bottom	设置元素的下外边距
+                margin-left	设置元素的左外边距
+                margin-right	设置元素的右外边距
+                margin-top	设置元素的上外边距
+            2.边框border
+                border	简写属性，在一条声明中设置所有边框属性
+                border-color	简写属性，设置四条边框的颜色
+                border-radius	简写属性，可设置圆角的所有四个 border-*-radius 属性
+                border-style	简写属性，设置四条边框的样式
+                border-width	简写属性，设置四条边框的宽度
+                border-bottom	简写属性，在一条声明中设置所有下边框属性
+                border-bottom-color	设置下边框的颜色
+                border-bottom-style	设置下边框的样式
+                border-bottom-width	设置下边框的宽度
+                border-left	简写属性，在一条声明中设置所有左边框属性
+                border-left-color	设置左边框的颜色
+                border-left-style	设置左边框的样式
+                border-left-width	设置左边框的宽度
+                border-right	简写属性，在一条声明中设置所有右边框属性
+                border-right-color	设置右边框的颜色
+                border-right-style	设置右边框的样式
+                border-right-width	设置右边框的宽度
+                border-top	简写属性，在一条声明中设置所有上边框属性
+                border-top-color	设置上边框的颜色
+                border-top-style	设置上边框的样式
+                border-top-width	设置上边框的宽度
+            3.内边距padding
+                padding	用于在一条声明中设置所有内边距属性的简写属性
+                padding-bottom	设置元素的下内边距
+                padding-left	设置元素的左内边距
+                padding-right	设置元素的右内边距
+                padding-top	设置元素的上内边距
+            4.内容
+                height	设置元素的高度
+                max-height	设置元素的最大高度
+                max-width	设置元素的最大宽度
+                min-height	设置元素的最小高度
+                min-width	设置元素的最小宽度
+                width	设置元素的宽度
+     -->
+</head>
+<body>
+    <!-- margin test -->
+    <p class="margin-normal"> p.normal 100px 100px 150px 80px </p>
+    <p class="margin-simplify"> p.simplify 25px 50px 75px 100px </p>
+    <p class="margin-auto"> auto 200px and some other words to fill the blank </p>
+    <div class="margin-div">
+        <p class="margin-inherit"> p.inherit inherit from div left: 100px </p>
+    </div>
+
+    <!-- border test -->
+    <p class="border-dotted">dotted 点线边框-Red</p>
+    <p class="border-dashed">dashed 虚线边框-HEX-Red</p>
+    <p class="border-solid">solid 实线边框-RGB-Red</p>
+    <p class="border-double">double 双边框-HSL-Red</p>
+    <p class="border-groove">groove 3D 坡口边框-上红 右绿 下蓝 左黄</p>
+    <p class="border-ridge">ridge 3D 脊线边框-圆角8px</p>
+    <p class="border-inset">inset 3D inset 边框-圆角15px</p>
+    <p class="border-outset">outset 3D outset 边框</p>
+    <p class="border-none">none 无边框</p>
+    <p class="border-hidden">hidden 隐藏边框</p>
+    <p class="border-mix">mix 混合边框 上-dotted 点线边框 右-dashed 虚线边框 下-solid 实线边框 左-double 双边框</p>
+    <p class="border-mix2">mix 混合边框2 上-dotted 左-solid 右-double 下-groove</p>
+    <p class="border-simplify">简写边框 8px dotted blue</p>
+    <p class="border-simplify2">简写单边框2 4px solid red</p>
+
+    <!-- padding test -->
+    <p class="padding-normal"> normal 50px 30px 50px 30px and so so so so so so so so so so so so so so so so so so so so so so so so so so so so so so so so </p>
+    <p class="padding-simplify"> simplify 30px 50px 30px 50px and so so so so so so so so so so so so so so so so so so so so so so so so so so so so so so so so </p>
+    <p class="padding-width"> width 200px padding 30px 50px 30px 50px </p>
+    <p class="padding-box-sizing"> box-sizing width 200px padding 30px 50px 30px 50px </p>
+
+    <!-- content test -->
+    <div class="content-normal"> height 200px width 80% </div>
+    <div class="content-max-width"> height 200px max-width  max 500px </div>
+
+    <!-- total test -->
+    <div class="total">此文本是盒子里的内容。我们添加了 50px 的内边距，20px 的外边距和 15px 的绿色边框。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。此文本是盒子里的内容。</div>
+</body>
+</html>

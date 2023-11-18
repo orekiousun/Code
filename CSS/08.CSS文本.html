@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS文本</title>
+    <!-- 
+        1.color：用于设置文本的颜色
+            颜色名 - 比如 "red"
+            十六进制值 - 比如 "#ff0000"
+            RGB 值 - 比如 "rgb(255,0,0)"
+        2.text-align：设置文本的水平对齐方式
+            文本可以左对齐或右对齐，或居中对齐
+            text-align: left;   /* 左对齐 */
+            text-align: right;   /* 右对齐 */
+            text-align: center   /* 居中对齐 */
+            text-align: justify;   /* 拉伸每一行，使每一行具有相等的宽度，并且左右边距是直的 */
+        3.direction+unicode-bidi：更改元素的文本方向
+            同时输入
+            direction: rtl;
+            unicode-bidi: bidi-override;
+            可以将文字倒序
+        4.垂直对齐
+            vertical-align: top;   /* 对齐顶部 */
+            vertical-align: middle;   /* 居中对齐 */
+            vertical-align: bottom;   /* 对齐底部 */
+        5.text-decoration：用于设置或删除文本装饰
+            text-decoration: none;   /* 用于从链接上删除下划线 */
+            text-decoration: overline;   /* 上划线 */
+            text-decoration: line-through;   /* 中间删除线 */
+            text-decoration: underline;   /* 下划线<容易与超链接混淆> */
+        6.text-transform：指定文本中的大写和小写字母
+            text-transform: uppercase;   /* 将所有字母大写 */
+            text--transform: lowercase;   /* 将所有字母小写*/
+            text-transform: capitalize   /* 将首字母大写，不会将后面的字母小写 */
+        7.text-indent：首行缩进
+            text-indent: 50px;   /* 将文本第一行缩进50px */
+        8.letter-spacing：字符间距
+            letter-spacing: 3px;   /* 可以为正值 */
+            letter-spacing: -3px;    /* 可以为负值 */
+        9.line-height：行间距
+            line-height: 0.8;   /* 输入值为一个比例*/
+        10.word-spacing：单词间距
+            word-spacing: 10px;   /* 可以为正值 */
+            word-spacing: -5px;   /* 可以为负值 */
+        11.white-space：指定元素内部空白的处理方式
+            white-space: nowrap;   /* 禁用元素内的文本换行 */
+        12.text-shadow：文本阴影
+            text-shadow: 2px 3px;   /* 表示水平阴影2px，垂直阴影3px */
+            text-shadow: 2px 3px red;   /* 表示水平阴影2px，垂直阴影3px，阴影颜色为红色 */
+            text-shadow: 2px 3px 5px red;   /* 表示水平阴影2px，垂直阴影3px，阴影颜色为红色，阴影模糊度为5px */
+     -->
+    <style>
+        /* color and text-align test */
+        div.color {
+            background-color: black;
+            color: white;
+        }
+        div.left {
+            background-color: gray;
+            color: white;
+            text-align: left;
+        }
+        div.right {
+            background-color:  darkgray;
+            color: white;
+            text-align: right;
+        }
+        div.center {
+            background-color: lightgrey;
+            color: white;
+            text-align: center;
+        }
+        div.justify {
+            background-color: black;
+            color: white;
+            text-align: justify;
+            width: 400px;
+        }
+
+        /* direction and test */
+        div.direction {
+            background-color: black;
+            color: white;
+            text-align: center;
+            direction: rtl;
+            unicode-bidi: bidi-override;
+        }
+
+        /* vertical-align test */
+        img.top {
+            vertical-align: top;
+        }
+        img.middle {
+            vertical-align: middle;
+        }
+        img.bottom {
+            vertical-align: bottom;
+        }
+
+        /* text-decoration and text-transform test */
+        p.overline {
+            text-decoration: overline;
+            text-transform: uppercase;
+        }
+        p.line-through {
+            text-decoration: line-through;
+            text-transform: lowercase;
+        }
+        p.underline {
+            text-decoration: underline;
+            text-transform: capitalize;
+        }
+
+        /* text-indent, letter-spacing, line-height, word-spacing test */
+        div.text1 {
+            width: 500px;
+            height: 100px;
+            text-indent: 50px;
+            letter-spacing: 3px;
+            line-height: 1.5;
+            word-spacing: 10px;
+            background-color: gray;
+            color: white;
+        }
+        div.text2 {
+            width: 500px;
+            height: 100px;
+            text-indent: 20px;
+            letter-spacing: -1px;
+            line-height: 0.8;
+            word-spacing: 3px;
+            background-color: darkgray;
+            color: white;
+        }
+
+        /* white-space test */
+        div.white-space {
+            white-space: nowrap;
+            background-color: lightgrey;
+            color: white;
+        }
+
+        /* text-shadow test */
+        div.shadow1{
+            text-shadow: 2px 3px 5px gray;
+            color: black;
+            background-color: white;
+        }
+        div.shadow2{
+            text-shadow: 2px 3px gray;
+            color: black;
+            background-color: white;
+        }
+    </style>
+    <!-- 
+        所有文本属性：
+        color	设置文本颜色
+        direction	指定文本的方向 / 书写方向
+        letter-spacing	设置字符间距
+        line-height	设置行高
+        text-align	指定文本的水平对齐方式
+        text-decoration	指定添加到文本的装饰效果
+        text-indent	指定文本块中首行的缩进
+        text-shadow	指定添加到文本的阴影效果
+        text-transform	控制文本的大小写
+        text-overflow	指定应如何向用户示意未显示的溢出内容
+        unicode-bidi	与 direction 属性一起使用，设置或返回是否应重写文本来支持同一文档中的多种语言
+        vertical-align	指定文本的垂直对齐方式
+        white-space	指定如何处理元素内的空白
+        word-spacing	设置单词间距
+     -->
+</head>
+<body>
+    <div class="color"> black background and white text </div>
+    <div class="left"> text-align: left </div>
+    <div class="right"> text-align: right </div>
+    <div class="center"> text-align: center </div>
+    <div class="justify"> text-align: justify In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since. 'Whenever you feel like criticizing anyone,' he told me, 'just remember that all the people in this world haven't had the advantages that you've had.' </div>
+    <div class="direction"> direction and unicode-bidi test </div>
+    <p class="overline"> vertical-align：<img class="top" src="../HTML/资源/图片/bilibili.png" alt=""> TOP and OVERLINE </p>
+    <p class="line-through"> vertical-align：<img class="middle" src="../HTML/资源/图片/bilibili.png" alt=""> MIDDLE and LINE-THROUGH </p>
+    <p class="underline"> vertical-align: <img class="bottom" src="../HTML/资源/图片/bilibili.png" alt=""> BOTTOM and UNDERLINE </p>
+    <div class="text1"> this is a text of 50px text-indent and 3px letter-spacing and 1.5 line-height and 10px word-spacing </div>
+    <div class="text2"> this is a text of 20px text-indent and -1px letter-spacing and 0.8 line-height and 3px word-spacing </div>
+    <div class="white-space">
+        this text will ban on line  
+        this text will ban on line 
+        this text will ban on line 
+        this text will ban on line 
+        this text will ban on line 
+    </div>
+    <div class="shadow1"> text-shadow with 2px horizontal gray shadow and 3px vertical gray shadow and 5px blur </div>
+    <div class="shadow2"> text-shadow with 2px horizontal gray shadow and 3px vertical gray shadow </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动实例</title>
+    <!-- 
+
+    -->
+    <style>
+        * {
+            box-sizing: border-box;   /* 将标签的宽度固定为在width属性中设置的值，不会和内边距相加 */
+        }
+        div.box {
+            float: left;
+            width: 33.3%;
+            height: 100px;
+        }
+        div.img {
+            float: left;
+            width: 33.3%;
+            height: 5px;
+        }
+        div.img-container {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <h1>并排浮动窗口</h1>
+    <div class="clearfix">
+        <div class="box" style="background-color: gray;">
+            <p>A Single Box </p>
+        </div>
+        <div class="box" style="background-color: darkgray;">
+            <p>A Single Box </p>
+        </div>
+        <div class="box" style="background-color: lightgray;">
+            <p>A Single Box </p>
+        </div>
+    </div>
+    <h1>并排图像</h1>
+    <div class="clearfix">
+        <div class="img-container">   <!-- 这个外部框架才是实际的浮动内容 -->
+            <img src="../HTML/资源/图片/bilibili.png" alt="">
+        </div>
+        <div class="img-container">
+            <img src="../HTML/资源/图片/bilibili.png" alt="">
+        </div>
+        <div class="img-container">
+            <img src="../HTML/资源/图片/bilibili.png" alt="">
+        </div>
+    </div>
+    <div class="clearfix">
+        <div style="background-color:grey; float: left; width: 50%; height: 200px; padding: 25px;">
+            <h1>Some Text</h1>
+            <p> passage 1 </p>
+        </div>
+        <div style="background-color:darkgray; float: left; width: 50%; height: 200px; padding: 25px;">
+            <h1>Some Text</h1>
+            <p> passage 2 </p>
+        </div>
+    </div>
+    <p>但是，这么做就失去了弹性。如果可以保证框中始终有相同数量的内容，那是可以的。但是很多时候，内容是不一样的。如果您在手机上尝试上例，则会看到第二个框的内容将显示在框的外部。这是 CSS3 Flexbox 派上用场的地方 - 因为它可以自动拉伸框使其与最长的框一样长</p>
+    
+    <p>请注意，我们还用了 clearfix hack 来处理布局流，并添加了 box-sizing 属性以确保图像容器不会由于额外的内边距（填充）而损坏。请尝试删除此代码以查看效果。</p>
+</body>
+</html>

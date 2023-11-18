@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  
+        图片标签用于向当前页面中引入外部图片
+        使用img标签引入外部图片（自结束标签）
+        img属于替换元素（写的东西不直接显示，被一个东西替换），介于块和行内元素之间，具有两者元素的特点
+        src属性指定外部图片路径：
+            引入电脑内图片时，路径规则与超链接一致
+            引入网上图片时，复制图片路径即可（百度图片选中复制图片地址），注意版权意识
+        alt属性：
+            对图片的描述
+            默认情况下无法显示，有些网站会在图片无法显示时显示描述
+            搜索引擎会根据alt中内容识别图片，如果不写alt属性，则图片不会被搜索引擎搜索
+        width属性和height属性：
+            指定图片宽度和高度（单位是像素）
+            宽度和高度如果只改了一个，图片会同比例缩放
+            同时指定宽高图片会被压缩
+        注意：一般情况下在pc端不建议修改图片大小
+            大图缩小浪费内存，小图放大图片变糊
+            最好需要多大裁多大，主要是大图缩小，很少小图放大
+        webp：谷歌推出的用于表示网页的图片格式
+            颜色丰富，支持透明通道，占空间小，并且支持动图
+            缺点：兼容性差
+        base64：将图片使用base64进行编码，对数据进行加密
+            将图片转换为字符，通过字符的形式引入图片
+            使用场景不多，一般是需要和网页一起加载的图片才会使用base64
+            如何转base64：百度找转码器
+    -->
+    <img src="./资源/图片/bilibili.png" alt="bilibili">
+    <img src="https://img2.baidu.com/it/u=3215719721,621674964&fm=26&fmt=auto&gp=0.jpg" alt="violet" width="200" height="200"><br>
+     <!--  
+        内联框架iframe，用于向当前网页中引入外部页面
+        src指定引入网页路径
+        frameborder指定是否有边框，0为无，1为有
+        可以通过width和height指定大小
+    -->
+    <iframe src="https://www.qq.com/" frameborder="0" width="1600" height="800"></iframe>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  
+        audio标签向网页中引用外部文件
+            音视频文件默认情况下不允许用户自己控制播放或停止
+        属性：
+            controls是否允许用户播放，不需要赋值
+            autoplay音频文件是否自动播放    
+                如果设置了autoplay则音乐在打开页面时自动播放
+                但是目前来讲大部分浏览器都不会自动对音乐进行播放（用户体验）
+            loop循环播放
+    -->
+    <audio src="./资源/音乐/Whoosh_Transition_001.wav" controls loop></audio><br>
+    <!-- 
+        除了通过src指定外部文件以为，还可以通过surce来指定
+        某些浏览器不支持mp3也可以用source来解决
+        老版本浏览器用embd引用音视频，会自动播放
+        以下方式可以用于兼容所有老式浏览器
+    -->
+    <audio controls>
+        <p>对不起，您的浏览器不支持音频播放</p>
+        <source src="./资源/音乐/Whoosh_Transition_001.wav">
+        <source src="./资源/音乐/Whoosh_Transition_001.ogg">
+        <embed src="./资源/音乐/Whoosh_Transition_001.wav" type="audio/mp3">
+    </audio><br>
+   <!--  
+       用video引入视频文件
+       使用方式和audio基本一致
+   -->
+    <video src="./资源/视频/紫-狗.mp4" width="400" height="400" controls></video><br>
+    <!-- 万能兼容格式 -->
+    <video controls width="400" height="400">
+        <source src="./资源/视频/紫-狗.mp4" >
+        <source src="./资源/视频/紫-狗.webm">
+        <embed src="./资源/视频/紫-狗.mp4" type="video/mp3"><br>
+    </video><br>
+    <!-- 
+        音频视频一般不会往本地放文件
+        将视频传到视频网站，引入网站页面
+        视频页面分享时复制通用代码 
+    -->
+    <iframe width="960" height="480" src="//player.bilibili.com/player.html?aid=77217003&bvid=BV1XJ411X7Ud&cid=132017557&page=26" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</html>

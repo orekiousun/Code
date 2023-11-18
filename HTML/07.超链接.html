@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-v=equi"X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        超链接可以从一个界面跳转到其他界面，或者跳转到当前页面其他位置
+        使用a标签创建超链接
+            属性：
+                href：指定跳转路径
+                    -值可以是一个外部网站的地址
+                    -也可以写一个内部页面的地址（页面在同一个目录下可以直接写名字）
+                        当需要跳转到服务器/项目内部页面时，一般都会使用相对路径
+                        相对路劲一般都会使用./或../开头，/可以省略不写，若不写./与../相当于写了./
+                        ./表示当前文件所在的目录(当前所在目录几位HTML文件夹)
+                        ../表示当前文件所在目录的上一级目录
+        a标签超链接是行内元素，超链接a标签中可以嵌套除他自生外任何元素
+        可通过br换行
+    -->
+    <a>超链接</a><br><br>
+    <a>超链接</a>
+    <a>超链接<div>aa</div></a>
+    <a href="https://www.baidu.com">百度</a><br><br>
+    <a href="06.列表.html">内部页面</a><br><br>
+    <!-- 假设此时目录下有个inner文件夹，内有target.html，则跳转方法： -->
+    <a href="./inner/target.html">target</a>
+    <!-- 假设此时上级目录下有个outer文件夹，内有target.html，则跳转方法： -->
+    <a href="../outer/target.html">target</a><br><br>
+    <!-- 
+        target属性，用于指定超链接打开的位置
+            可选值
+                _self 默认值 在当前页面中打开超链接
+                _blank 空白值 在新的页面中打开超链接
+    -->
+    <a href="https://www.bilibili.com/" target="_self">bilibili_self</a><br><br>
+    <a href="https://www.bilibili.com/" target="_blank">bilibili_blank</a><br><br>
+    <!--  
+        将超链接的href设置为#号，页面不会跳转，回到顶部
+        id属性：唯一不重复的属性
+        每一个标签都可以添加id属性，id属性就是元素唯一标识，页面不能出现重复的id属性
+        id属性的属性值区分大小写，一般以字母开头
+        此时跳转到底部方法：为底部加上id属性bottom，顶部写上#bottom，此方法可以跳转到任意位置
+    -->
+    <!-- 开发中对于未定位置的超链接一般为href写一个#号，作为路径站位符使用（此标签会回到顶部） -->
+    <a href="#">回到顶部</a><br><br>
+    <!-- 空的站位符 javascript:; ，不会跳转 -->
+    <a href="javascript:;">占位符</a><br><br>
+    <a href="#bottom">回到底部</a><br>
+    <a href="#mid">去到中间</a><br>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p id="mid">中间内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容底部</p>
+    <a href="#" id="bottom">回到顶部</a>
+</body>
+</html>

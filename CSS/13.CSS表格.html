@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS表格</title>
+    <!-- 
+        HTML中表格的书写方法：
+            <table>   --table用于添加表格外标签
+                <tr>   --tr用于创建一行
+                    <th>Name</th>  
+                    <th>Sex</th>   --th添加表格头部
+                </tr>
+                <tr>
+                    <td>Lily</td>
+                    <td>Girl</td>   --td用于添加头部以下内容
+                </tr>
+                <tr>
+                    <td>David</td>
+                    <td>Boy</td>
+                </tr>
+            </table>
+        使用CSS可以极大改善表格外观
+        1.表格边框：
+            如需在 CSS 中设置表格边框，请使用 border 属性
+            border: 1px solid black;
+        2.全宽表格：在某些情况下，上表似乎很小。如果您需要一个可以覆盖整个屏幕（全宽）的表格，请为 <table> 元素添加 
+            width: 100%;
+        3.双边框/单边框：出现的原因是th、td 元素都有单独的边框，删除双边框可以按照以下方法：
+            table {
+                border-collapse: collapse;
+            }
+            table, th, td {
+                border: 1px solid black;
+            }
+        4.表格宽度：可通过百分比/像素值自定义表格宽度
+        5.水平对齐：可用text-align添加字体对齐到th，td中
+        6.垂直对齐：可用vertical-align添加字体对齐到th，td中
+        7.表格内边距：添加padding控制内边距
+        8.水平分割线：只添加border-bottom
+        9.可悬停表格：在tr上添加hover选项选择器，可以在鼠标放在上面时悬停
+        10.条状表格：使用nth-child()选择器，为所有偶数（或奇数）表行添加 background-color
+        11.表格颜色：指定元素背景颜色即可实现背景颜色更换
+        12.响应式表格：在 <table> 元素周围添加带有 overflow-x:auto 的容器元素（例如 <div>），以实现响应式效果
+            <div style="overflow-x: auto;"></div>
+     -->
+    <style>
+        /* 外边框表格 */
+        table.single-border {
+            border: 2px solid black;
+        }
+
+        /* 全宽表格 */
+        table.whole-width {
+            border: 2px solid black;
+            width: 100%;
+            text-align: left;
+        }
+
+        /* 双边框表格 */
+        th.style1, td.style1 {
+            border: 2px solid black;
+        }
+
+        /* 单边框表格 */
+        table.style2 {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th.style2 {
+            border: 2px solid black;
+            height: 50px;
+            text-align: center;
+            vertical-align: top;
+        }
+        td.style2 {
+            border: 2px solid black;
+            height: 30px;
+            text-align: center; 
+            vertical-align: bottom;
+        }
+
+        /* 添加内边距 */
+        table.style3 {
+            border-collapse: collapse;
+            width: 50%;
+        }
+        th.style3 {
+            border: 2px solid black;
+            padding: 15px;
+        }
+        td.style3 {
+            border: 2px solid black;
+            padding: 10px;
+        }
+
+        /* 水平分割线表格+可悬停 */
+        table.style4 {
+            border-collapse: collapse;
+            width: 30%;
+        }
+        th.style4, td.style4 {
+            border-bottom: 2px solid rgb(184, 184, 184);
+            text-align: left;
+            padding: 8px;
+        }
+        tr.style4:hover {
+            background-color: lightgray;
+        }
+
+        /* 条状表格 */
+        tr.style5:nth-child(odd) {
+            background-color: lightgray;
+        }
+        
+        /* 多彩表格 */
+        th.style6 {
+            text-align: left;
+            padding: 8px;
+            background-color: darkgrey;
+        }
+        td.style6 {
+            background-color: lightgray;
+            padding: 8px;
+        }
+
+        /* 互动，可滑动表格 */
+        table.style7 {
+            border-collapse: collapse;
+        }
+
+    </style>
+</head>
+<body>
+    <h1> A Common Table </h1>
+    <table class="single-border">
+        <tr>
+            <th>Name</th>
+            <th>Sex</th>
+        </tr>
+        <tr>
+            <td>Lily</td>
+            <td>Girl</td>
+        </tr>
+        <tr>
+            <td>David</td>
+            <td>Boy</td>
+        </tr>
+    </table>
+
+    <h1> A Whole-Width Table </h1>
+    <table class="whole-width">
+        <tr>
+            <th>Name</th>
+            <th>Sex</th>
+        </tr>
+        <tr>
+            <td>Lily</td>
+            <td>Girl</td>
+        </tr>
+        <tr>
+            <td>David</td>
+            <td>Boy</td>
+        </tr>
+    </table>
+
+    <h1> A Double-Border Table </h1>
+    <table class="single-border">
+        <tr>
+            <th class="style1">Name</th>
+            <th class="style1">Sex</th>
+        </tr>
+        <tr>
+            <td class="style1">Lily</td>
+            <td class="style1">Girl</td>
+        </tr>
+        <tr>
+            <td class="style1">David</td>
+            <td class="style1">Boy</td>
+        </tr>
+    </table>
+
+    <h1> A Single-Border Table </h1>
+    <table class="style2">
+        <tr>
+            <th class="style2">Name</th>
+            <th class="style2">Sex</th>
+        </tr>
+        <tr>
+            <td class="style2">Lily</td>
+            <td class="style2">Girl</td>
+        </tr>
+        <tr>
+            <td class="style2">David</td>
+            <td class="style2">Boy</td>
+        </tr>
+    </table>
+
+    <h1> Another Single-Border Table </h1>
+    <table class="style3">
+        <tr>
+            <th class="style3">Name</th>
+            <th class="style3">Sex</th>
+        </tr>
+        <tr>
+            <td class="style3">Lily</td>
+            <td class="style3">Girl</td>
+        </tr>
+        <tr>
+            <td class="style3">David</td>
+            <td class="style3">Boy</td>
+        </tr>
+    </table>
+
+    <h1> A Horizontal and Hover Table </h1>
+    <table class="style4">
+        <tr class="style4">
+            <th class="style4">Name</th>
+            <th class="style4">Sex</th>
+        </tr>
+        <tr class="style4">
+            <td class="style4">Lily</td>
+            <td class="style4">Girl</td>
+        </tr>
+        <tr class="style4">
+            <td class="style4">David</td>
+            <td class="style4">Boy</td>
+        </tr>
+    </table>
+
+    <h1> A Strip Table </h1>
+    <table class="style4">
+        <tr class="style5">
+            <th class="style4">Name</th>
+            <th class="style4">Sex</th>
+        </tr>
+        <tr class="style5">
+            <td class="style4">Lily</td>
+            <td class="style4">Girl</td>
+        </tr>
+        <tr class="style5">
+            <td class="style4">David</td>
+            <td class="style4">Boy</td>
+        </tr>
+    </table>
+
+    <h1> A Colorful Table </h1>
+    <table class="style4">
+        <tr>
+            <th class="style6">Name</th>
+            <th class="style6">Sex</th>
+        </tr>
+        <tr>
+            <td class="style6">Lily</td>
+            <td class="style6">Girl</td>
+        </tr>
+        <tr>
+            <td class="style6">David</td>
+            <td class="style6">Boy</td>
+        </tr>
+    </table>
+
+    <h1> A Interact Table </h1>
+    <div style="overflow-x: auto;">
+        <table class="style7">
+            <tr class="style4">
+              <th class="style4">First Name</th>
+              <th class="style4">Last Name</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+              <th class="style4">Points</th>
+            </tr>
+            <tr class="style4">
+              <td class="style4">Bill</td>
+              <td class="style4">Gates</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+              <td class="style4">50</td>
+            </tr>
+            <tr class="style4">
+              <td class="style4">Steve</td>
+              <td class="style4">Jobs</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+              <td class="style4">94</td>
+            </tr>
+            <tr class="style4">
+              <td class="style4">Elon</td>
+              <td class="style4">Musk</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+              <td class="style4">67</td>
+            </tr>
+          </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+1.函数语法
+function [输出参数列表]=函数名[输入参数列表]   %参数之间用逗号隔开
+    function [r1, r2, r3]=funname(a1, a2, a3, a4)  %4个输入参数，3个输出参数
+        注意：1）保存函数的文件名一般与程序中定义的函数名相同
+    无输入参数示例：function [r1, r2, r3]＝funname
+    无输出参数示例：function funname(a1, a2, a3, a4)
+    无输入参数、无输出参数示例：function funname
+主函数与子函数：
+    MATLAB语言允许编写一个函数文件，可以定义多个函数
+    调用规则：
+        主函数可以调用子函数
+        子函数可以调用子函数
+        子函数不能调用主函数
+        子函数可以调用其他程序文件
+    function s=myfun   %文件名myfun.m
+    num=input('输入一个正整数：')
+    s=mysum(num);
+    disp(sprintf('从1到%d的所有整数的和为%d',num,s))
+    function s=mysum(num)
+    s=sum(1:num);
+2.文本文件操作
+fopen：打开文件fid = fopen(文件路径,打开方式)
+    fid = fopen(‘myout.txt’,‘wt’)
+    ‘r’：只读方式打开文件（默认方式），该文件必须已存在。
+    ‘r+’：读写方式打开文件，打开后先读后写，该文件必须已存在
+    ‘w’：打开后写入数据，该文件已存在则更新；不存在则创建
+    ‘w+’：读写方式打开文件。先读后写，该文件已存在则更新；不存在则创建
+    ‘a’：在打开的文件末端添加数据，文件不存在则创建
+    ‘a+’：打开文件后，先读入数据再添加数据，文件不存在则创建
+    另外，在这些字符串后添加一个‘t’，如‘rt’或‘wt+’，则将该文件以文本方式打开；如果添加的是‘b’，则以二进制格式打开，这也是fopen函数默认的打开方式
+fclose：关闭文件   文件在进行完读、写等操作后，应及时关闭，以免数据丢失
+    sta = fclose(fid)   %关闭成功sta返回0，关闭失败sta返回-1
+    fclose(‘all’)   %关闭所有已经打开的文件
+fgetl：按行读取文本函数
+    fid = fopen(‘fgetl.m’,‘rt’)；
+    while ~feof(fid), %~feof表示未读到文件末尾
+        tline=fgetl(fid); %读取一行文本
+        disp(tline)
+    end
+    fclose(fid);
+fprintf:将数据按指定格式写入到文本文件中 fprintf(fid,format,A)   %fid为文件句柄，format为格式符，A为存放数据的矩阵
+    fprintf(fid,‘name=%s;age=%5d’,name,age)
+fsancf:读取数据文件（.txt）中的数据
+    A=fscanf(fid,format,size)   %A为存放读取的数据，一般为矩阵,count为成功读取元素的个数,format为读取的数据格式，如%d为十进制的读取格式
+    size为A的数据格式,有以下三种：
+        inf        一直读到最后结束  
+        N         读N个元素放入列向量
+        [M,N]  按列顺序读取至少一个M×N矩阵的M*N元素，N可以是inf，但M不能
+    a=fsancf(fid,'%f',[3,inf])   %3个3个数据的读取，放在一个3*n的矩阵a中
