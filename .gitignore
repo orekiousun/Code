@@ -1,5 +1,6 @@
 AutoVsCEnv_WPF V1.995
 /VSCode_Background.png
 .idea
+.vscode
 cmake-build-debug
 /C++/CMakeLists.txt
