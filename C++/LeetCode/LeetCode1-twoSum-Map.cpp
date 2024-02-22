@@ -3,6 +3,7 @@ using namespace std;
 #include<vector>
 #include<unordered_map>
 
+// 使用一个字典，边插入边查找
 vector<int> twoSum(vector<int>& nums, int target) {
     unordered_map<int, int> pos;
     // 边插入边查找

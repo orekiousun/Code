@@ -1,17 +1,14 @@
 #include<iostream>
 using namespace std;
 #include<vector>
+#include<string>
 
-int main()
-{
-    string s = "PAYPALISHIRING";
-    int numRows = 3;
+string convert(string s, int numRows) {
     string res = "";
     if(s.size() <= numRows || numRows == 1) res = s;
 
     int numColumns = (s.size() / (numRows + numRows - 2) + 1) * (numRows - 1);
-    
-    
+
     char arr[numRows][numColumns];
     int pos = 0;
 
@@ -23,7 +20,6 @@ int main()
         }
         cout << endl;
     }
-
 
     for(int i = 0;  ;i = i + numRows - 1)
     {
@@ -54,8 +50,16 @@ int main()
         }
         cout << endl;
     }
-    
-    cout << res << endl;
+
+    return res;
+}
+
+int main()
+{
+    string s = "PAYPALISHIRING";
+    int numRows = 3;
+
+    cout << convert(s, numRows) << endl;
 
     system("pause");
     return 0;

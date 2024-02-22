@@ -3,24 +3,23 @@ using namespace std;
 #include<string>
 
 // 从中心向两边扩散
-
-int main()
-{
-    string s = "bbbb";
+// 最长回文子串
+string longestPalindrome(string s) {
     int leftCenter = 0;
     int rightCenter = 0;
-    int resultbegindex = 0;
+    int resultBeginIndex = 0;
     int resultLength = 1;
     int size = s.size();
 
     // if(size == 2)
     // {
     //     if(s[0] == s[1]) return s;
-    //     else return s.substr(resultbegindex, resultLength);
+    //     else return s.substr(resultBeginIndex, resultLength);
     // }
 
     for(int i = 1; i < size - 1; i++)
     {
+        // 预处理，找到所有和中心节点相同的字符
         int currentLength = 1;
         if((s[i - 1] != s[i] && s[i + 1] != s[i]))
         {
@@ -61,21 +60,29 @@ int main()
             {
                 currentLength += 2;
                 leftCenter--;
-                rightCenter++; 
-            } 
-            else  
+                rightCenter++;
+            }
+            else
             {
                 break;
             }
         }
-        if(currentLength > resultLength) 
+        if(currentLength > resultLength)
         {
             resultLength = currentLength;
-            resultbegindex = ++leftCenter;
+            resultBeginIndex = ++leftCenter;
         }
     }
 
-    cout << s.substr(resultbegindex, resultLength) << endl;
+    return s.substr(resultBeginIndex, resultLength);
+}
+
+
+int main()
+{
+    string s = "bbbb";
+
+    cout << longestPalindrome(s) << endl;
 
     system("pause");
     return 0;

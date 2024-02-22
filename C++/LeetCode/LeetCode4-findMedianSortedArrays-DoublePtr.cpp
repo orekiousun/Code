@@ -52,7 +52,7 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2, int count)
         else if(index2 == nums2.size()) index1++;
         else if(nums1[index1] < nums2[index2])
             index1++;
-        else 
+        else
             index2++;
         currentCount++;
     }
