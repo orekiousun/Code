@@ -2,6 +2,8 @@
 using namespace std;
 #include<vector>
 
+// 二分查找，把数组分为两个区间，两个区间中一定有一个区间有序，通过有序区间判断数字是否在该区间内，在就在该有序区间内查找，不在就在无序区间内查找
+// 重点是从二分后的区间内选一个区间
 class Solution {
 public:
     int search(vector<int>& nums, int target) {

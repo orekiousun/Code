@@ -22,7 +22,7 @@ public:
     }
 };
 
-// 递归方法
+// 递归方法（本质一样）
 class Solution {
 public:
     unordered_map<Node*, Node*> cachedNode;
