@@ -34,11 +34,7 @@ void printVector(const vector<int>& v)
     cout << endl;   
 }
 
-int main()
-{
-    vector<int> nums{3,4,1,4,3,3};
-    printVector(nums);
-
+void nextPermutation(vector<int>& nums) {
     int rightPos = 0;
     int size = nums.size();
 
@@ -51,7 +47,7 @@ int main()
         {
             rightPos = i - 1;
             break;
-        } 
+        }
     }
     if(i == 0 && nums[1] < nums[0])
     {
@@ -72,6 +68,14 @@ int main()
         swap(nums, rightPos, minIndex);
         Inverse(nums, rightPos + 1, size - 1);
     }
+}
+
+int main()
+{
+    vector<int> nums{3,4,1,4,3,3};
+    printVector(nums);
+
+    nextPermutation(nums);
     
     printVector(nums);
     

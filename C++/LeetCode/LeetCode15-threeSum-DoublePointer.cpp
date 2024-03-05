@@ -17,9 +17,7 @@ using namespace std;
     仍然是双指针的思想
 */
 
-int main()
-{
-    vector<int> nums{-1,0,1,2,-1,-4};
+vector<vector<int>> threeSum(vector<int>& nums) {
     vector<vector<int>> res;
     sort(nums.begin(), nums.end(), less<int>());
     int size = nums.size();
@@ -62,6 +60,15 @@ int main()
         }
     }
 
+    return res;
+}
+
+int main()
+{
+    vector<int> nums{-1,0,1,2,-1,-4};
+
+    vector<vector<int>> res = threeSum(nums);
+
     for (int i = 0; i < res.size(); i++)
     {
         for (int j = 0; j < 3; j++)
@@ -70,7 +77,6 @@ int main()
         }
         cout << endl;
     }
-
     system("pause");
     return 0;
 }
