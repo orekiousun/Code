@@ -20,13 +20,47 @@ vector<string> fullJustify(vector<string>& words, int maxWidth) {
     int n = words.size();
     int left = 0, right = 0;
     int curLen = 0;
+    vector<string> ret;
     while (right < n) {
-        curLen += words[right].size();
+        curLen = 0;
+        while (right < n && curLen + words[right].size() + right - left <= maxWidth) {
+            curLen += words[right].size();
+            right++;
+        }
+
+        string str = "";
+        if (right != n) {
+            int i = right - 1, interval = maxWidth - curLen;
+
+            while (i >= left) {
+                str.insert(0, words[i]);
+                int temp = i == left ? 0 : interval / (i - left);
+                interval -= temp;
+                string nullStr(temp, ' ');
+                str.insert(0, nullStr);
+                i--;
+            }
+
+        }
+        else {
+            for (int i = left; i < right; ++i) {
+                str += words[i];
+                str += " ";
+            }
+            str.erase(str.size() - 1, 1);
+        }
+        string nullStr(maxWidth - str.size(), ' ');
+        str += nullStr;
+        left = right;
+        ret.push_back(str);
     }
 
+    return ret;
 }
 
 int main() {
-    vector<string> words{"This", "is", "an", "example", "of", "text", "justification."};
+    vector<string> words{"ask","not","what","your","country","can","do","for","you","ask","what","you","can","do","for","your","country"};
     int maxWidth = 16;
+    vector<string> ret = fullJustify(words, maxWidth);
+    return  0;
 }
