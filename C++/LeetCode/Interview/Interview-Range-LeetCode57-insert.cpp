@@ -29,7 +29,7 @@ vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInter
     vector<vector<int>> ans;
     for (auto interval : intervals) {
         if (interval[0] > right) {
-            // 在插入区间的右侧且无交集，先
+            // 在插入区间的右侧且无交集
             if (!placed) {
                 ans.push_back({left, right});
                 placed = true;
