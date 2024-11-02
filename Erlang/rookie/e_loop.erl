@@ -13,9 +13,20 @@
 %% 本节将用递归模拟实现while和for循环语句
 
 %% API
--export([]).
+-export([start/0]).
 
 while(L) -> while(L, 0).
 while([], Acc) -> Acc;
-while([H|T], Acc) ->
-  while(T, Acc + H).
+while([_|T], Acc) ->
+  io:fwrite("~w~n", [Acc]),
+  while(T, Acc + 1).
+
+for(0, _) ->
+  [];
+for(N, Term) when N > 0 ->
+  io:fwrite("Hello~n"),
+  [Term | for(N - 1, Term)].
+
+start() ->
+  while([1, 2, 3, 4]),
+  for(5, 1).
