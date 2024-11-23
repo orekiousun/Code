@@ -1,9 +1,8 @@
 //
 // Created by ousun on 2024/11/9.
-// https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E6%80%9D%E8%B7%AF
-// 练习1：https://leetcode.cn/problems/sqrtx/description/
-// 练习2：https://leetcode.cn/problems/valid-perfect-square/submissions/579226990/
-// 二分查找
+// 二分查找：https://programmercarl.com/0704.%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE.html#%E6%80%9D%E8%B7%AF
+// x的平方根：https://leetcode.cn/problems/sqrtx/description/
+// 有效的完全平方数：https://leetcode.cn/problems/valid-perfect-square/submissions/579226990/
 //
 
 #include <iostream>

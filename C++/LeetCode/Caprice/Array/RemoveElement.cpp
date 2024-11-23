@@ -1,8 +1,8 @@
 //
 // Created by ousun on 2024/11/16.
-// https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/
-// https://leetcode.cn/problems/move-zeroes/
-// 移除元素
+// 移除元素：https://www.programmercarl.com/0027.%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE
+// 删除有序数组中的重复项：https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/
+// 移动零：https://leetcode.cn/problems/move-zeroes/
 //
 
 #include <iostream>
