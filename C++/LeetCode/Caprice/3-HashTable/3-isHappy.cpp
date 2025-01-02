@@ -19,7 +19,7 @@ int calc_bit_square(int n) {
     return ret;
 }
 
-// 使用unorder_set记录算过了哪些数，出现重复的就返回false
+// 使用unordered_set记录算过了哪些数，出现重复的就返回false
 bool isHappy(int n) {
     unordered_set<int> set;
     while (n != 1) {
