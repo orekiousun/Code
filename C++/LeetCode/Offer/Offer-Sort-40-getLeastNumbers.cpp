@@ -18,20 +18,20 @@ vector<int> getLeastNumbers(vector<int>& arr, int k) {
 }
 
 // K佬快排代码
-void quickSort(vector<int>& arr, int l, int r) {
+void quickSort(vector<int>& arr, int left, int right) {
     // 子数组长度为 1 时终止递归
-    if (l >= r) return;
-    // 哨兵划分操作（以 arr[l] 作为基准数）
-    int i = l, j = r;
+    if (left >= right) return;
+    // 哨兵划分操作（以 arr[left] 作为基准数）
+    int i = left, j = right;
     while (i < j) {
-        while (i < j && arr[j] >= arr[l]) j--;
-        while (i < j && arr[i] <= arr[l]) i++;
+        while (i < j && arr[j] >= arr[left]) j--;
+        while (i < j && arr[i] <= arr[left]) i++;
         swap(arr[i], arr[j]);
     }
-    swap(arr[i], arr[l]);
+    swap(arr[i], arr[left]);
     // 递归左（右）子数组执行哨兵划分
-    quickSort(arr, l, i - 1);
-    quickSort(arr, i + 1, r);
+    quickSort(arr, left, i - 1);
+    quickSort(arr, i + 1, right);
 }
 
 int main(int argc, char const *argv[]) {
