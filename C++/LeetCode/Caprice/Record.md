@@ -10,3 +10,5 @@
 - 4-String
   - 6-kmp
   - 7-repeatedSubstringPattern
+- 5-StackAndQueue
+  - 6-maxSlidingWindow：类似的觉得有单调性的，可以考虑：递增/递减栈，递增/递减队列，递增/递减双向队列
