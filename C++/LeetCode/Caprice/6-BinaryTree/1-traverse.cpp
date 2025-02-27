@@ -1,6 +1,7 @@
 //
 // Created by cd_ouymh on 2025/2/25.
 // 遍历：https://www.programmercarl.com/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86.html#%E6%80%9D%E8%B7%AF
+// 非递归法前、中、后序遍历其实个人感觉意义不大
 //
 
 #include <iostream>
@@ -132,25 +133,6 @@ vector<int> backTraverse(TreeNode* root) {
     return ret;
 }
 
-// 非递归层序遍历
-// 递归层序遍历：无实现，递归无法实现层序遍历
-vector<int> levelTraverse(TreeNode* root) {
-    // 使用队列进行前序遍历
-    queue<TreeNode*> q;
-    q.push(root);
-    vector<int> ret;
-    while (!q.empty()) {
-        TreeNode* front = q.front();
-        ret.push_back(front->val);
-        cout << front->val << " ";
-        q.pop();
-        if (front->left) q.push(front->left);
-        if (front->right) q.push(front->right);
-    }
-    cout << endl;
-    return ret;
-}
-
 int main() {
     /*
      *          1
@@ -179,6 +161,5 @@ int main() {
     backTraverseRecursion(n1);
     backTraverse(n1);
     cout << "层序遍历：" << endl;
-    levelTraverse(n1);
     return 0;
 }
