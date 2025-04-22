@@ -19,3 +19,5 @@
     - 后序遍历非递归实现
   - 16-isValidBST 验证二叉搜索树，注意要全链路验证
   - 19-lowestCommonAncestor 二叉树的最近公共祖先(看一下官方实现)
+- 7-BackTrack
+  - 9-findItinerary 重新安排行程，注意用回溯会超时，需要用dfs，反向插入结果中
