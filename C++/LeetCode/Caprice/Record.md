@@ -21,3 +21,6 @@
   - 19-lowestCommonAncestor 二叉树的最近公共祖先(看一下官方实现)
 - 7-BackTrack
   - 9-findItinerary 重新安排行程，注意用回溯会超时，需要用dfs，反向插入结果中
+- 8-Greed
+  - 8-candy 先从前往后，再从后往前，由局部最优推导到全局最优
+  - 16-minCameraCover 摄像头处理，通过返回值标识当前摄像头的状态
