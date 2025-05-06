@@ -22,7 +22,7 @@ int fullBag2(vector<int>& weight, vector<int>& value, int capacity) {
         for (int j = 0; j <= capacity; ++j) {
             if (j >= weight[i - 1])
                 // 选择装或者不装第i个物品的最大价值
-                // 注意这里和0-1背包的区别是，max的第二个蚕食的开头是dp[i]不是dp[i-1]，表示第i个可以重复用
+                // 注意这里和0-1背包的区别是，max的第二个参数的开头是dp[i]不是dp[i-1]，表示第i个可以重复用
                 // 由于是从前往后更新的，所以dp[i][j - weight[i - 1]]一定更新过了
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - weight[i - 1]] + value[i - 1]);
             else
@@ -32,7 +32,7 @@ int fullBag2(vector<int>& weight, vector<int>& value, int capacity) {
     return dp[len][capacity];
 }
 
-// 完全背包-1维数组，无法实现
+// 完全背包-1维数组实现
 int fullBag1(vector<int>& weight, vector<int>& value, int capacity) {
     int len = weight.size();
     vector<int> dp(capacity + 1, 0);
