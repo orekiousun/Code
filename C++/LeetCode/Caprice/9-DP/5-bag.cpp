@@ -15,30 +15,37 @@ int bag(vector<int>& weight, vector<int>& value, int capacity) {
     int len = weight.size();
     // i,j表示使用前i个物品装j容量的背包的最大价值
     vector<vector<int>> dp(len + 1, vector<int>(capacity + 1, 0));
+    // 用于记录每次的选择
+    vector<vector<bool>> path(len + 1, vector<bool>(capacity + 1, false));
     for (int i = 1; i <= len; ++i) {
         for (int j = 0; j <= capacity; ++j) {
-            if (j >= weight[i - 1])
+            dp[i][j] = dp[i - 1][j];
+            if (j >= weight[i - 1]) {
                 // 选择装或者不装第i个物品的最大价值
-                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - weight[i - 1]] + value[i - 1]);
-            else
-                dp[i][j] = dp[i - 1][j];
+                int tmp = dp[i - 1][j - weight[i - 1]] + value[i - 1];
+                if (tmp > dp[i - 1][j]) {
+                    dp[i][j] = tmp;
+                    // 记录路径
+                    path[i][j] = true;
+                }
+            }
         }
     }
-    // TODO: 重构结果集
+
+    // 打印结果集合
+    vector<int> retPath;
+    int curLen = len, curCapacity = capacity;
+    while (curLen > 0 && curCapacity > 0) {
+        if (path[curLen][curCapacity])
+            retPath.push_back(curLen - 1), curCapacity -= weight[curLen - 1];
+        curLen--;
+    }
+    for (int i = 0; i < retPath.size(); ++i) {
+        cout << retPath[i] << " ";
+    }
+    cout << endl;
 
     return dp[len][capacity];
-}
-
-// 重构结果集
-vector<int> makeRet(vector<vector<int>>& dp, vector<int>& weight, vector<int>& value, int capacity) {
-    vector<int> ret;
-    int curLen = weight.size(), curCapacity = capacity;
-    while (curLen > 0 && curCapacity > 0) {
-        if (dp[curLen][curCapacity] != dp[curLen][curCapacity])
-            ret.push_back(curLen - 1), curCapacity -= weight[curLen - 1];
-        curLen -= 1;
-    }
-    return ret;
 }
 
 // 01背包 - 一维数组实现
@@ -62,6 +69,6 @@ int bag2(vector<int>& weight, vector<int>& value, int capacity) {
 int main() {
     vector<int> weight{2,2,3,1,5,2};
     vector<int> value{2,3,1,5,4,3};
-    cout << bag(weight, value, 20) << endl;
+    cout << bag(weight, value, 12) << endl;
     return 0;
 }
