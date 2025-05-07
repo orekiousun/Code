@@ -36,11 +36,30 @@ int fullBag2(vector<int>& weight, vector<int>& value, int capacity) {
 int fullBag1(vector<int>& weight, vector<int>& value, int capacity) {
     int len = weight.size();
     vector<int> dp(capacity + 1, 0);
+    vector<vector<int>> path(len + 1, vector<int>(capacity + 1, 0));
     for (int i = 1; i <= len; ++i) {
+        // 记录本地采纳的次数
+        int cnt = 0;
         for (int j = 0; j <= capacity; ++j) {
-            if (j >= weight[i - 1]) dp[j] = max(dp[j], dp[j - weight[i - 1]] + value[i - 1]);
+            // 必须从前往后更新
+            if (j >= weight[i - 1] && dp[j - weight[i - 1]] + value[i - 1] > dp[j])
+                cnt ++, dp[j] = dp[j - weight[i - 1]] + value[i - 1], path[i][j] = cnt;
         }
     }
+
+    // 重建路径
+    vector<int> retPath;
+    int curLen = len, curCapacity = capacity;
+    while (curLen > 0 && curCapacity > 0) {
+        int cnt = path[curLen][curCapacity];
+        while (cnt --)
+            retPath.push_back(curLen - 1), curCapacity -= weight[curLen - 1];
+        curLen--;
+    }
+    for (int i = 0; i < retPath.size(); ++i) {
+        cout << retPath[i] << " ";
+    }
+    cout << endl;
 
     return dp[capacity];
 }
@@ -69,7 +88,8 @@ int fullBagBan(vector<int>& weight, vector<int>& value, int capacity) {
 
 
 int main() {
-    vector<int> weight{2,2,3,1,5,2};
-    vector<int> value{2,3,1,5,4,3};
+    vector<int> weight{1,2,3,4};
+    vector<int> value{2,4,4,5};
+    cout << fullBag1(weight, value, 5) << endl;
     return 0;
 }

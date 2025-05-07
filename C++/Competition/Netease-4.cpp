@@ -8,6 +8,7 @@ using namespace std;
 #include <string>
 #include <array>
 #include <algorithm>
+#include <unordered_map>
 
 /*
     0 -
@@ -17,18 +18,39 @@ using namespace std;
         0 - power cost
         1 - power cost
  */
-int bag(vector<vector<array<int, 2>>>& bags, int gold) {
+int bag(vector<string>& names, vector<vector<array<int, 2>>>& bags, int gold) {
     vector<vector<int>> dp(bags.size() + 1, vector<int>(gold + 1, 0));
+    vector<vector<int>> path(bags.size() + 1, vector<int>(gold + 1, -1));
     for (int i = 1; i <= bags.size(); ++i) {
         for (int j = 0; j <= gold; ++j) {
+            dp[i][j] = dp[i - 1][j];
+            // 几个+n品质里面选一个使结果最大的
             for (int k = 0; k < bags[i - 1].size(); ++k) {
                 int power = bags[i - 1][k][0], cost = bags[i - 1][k][1];
-                if (j >= cost)
-                    dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - cost] + power);
+                if (j >= cost && dp[i - 1][j - cost] + power > dp[i][j])
+                    dp[i][j] = dp[i - 1][j - cost] + power, path[i][j] = k;
             }
         }
     }
-    // TODO:回溯构造结果
+    // 构造结果
+    unordered_map<int, array<int, 2>> retPath;
+    int curLen = bags.size(), curGold = gold;
+    while (curLen > 0 && curGold > 0) {
+        if (path[curLen][curGold] >= 0) {
+            int k = path[curLen][curGold];
+            retPath[curLen - 1] = {curLen - 1, k};
+            curGold -= bags[curLen - 1][k][1];
+        }
+        else {
+            retPath[curLen - 1] = {curLen - 1, -1};
+        }
+        curLen--;
+    }
+    for (int i = 0; i < names.size(); ++i) {
+        int item = retPath[i][0], k = retPath[i][1];
+        cout << names[item] << "+" << k + 1 << endl;
+    }
+
     return dp[bags.size()][gold];
 }
 
@@ -56,7 +78,7 @@ int main() {
             }
             bags.push_back(vec);
         }
-        int ret = bag(bags, 100);
+        int ret = bag(names, bags, 100);
         cout << ret << endl;
     }
     return 0;
