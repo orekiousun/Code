@@ -38,12 +38,15 @@ int fullBag1(vector<int>& weight, vector<int>& value, int capacity) {
     vector<int> dp(capacity + 1, 0);
     vector<vector<int>> path(len + 1, vector<int>(capacity + 1, 0));
     for (int i = 1; i <= len; ++i) {
-        // 记录本地采纳的次数
+        // 记录本次采纳的次数
         int cnt = 0;
         for (int j = 0; j <= capacity; ++j) {
-            // 必须从前往后更新
-            if (j >= weight[i - 1] && dp[j - weight[i - 1]] + value[i - 1] > dp[j])
-                cnt ++, dp[j] = dp[j - weight[i - 1]] + value[i - 1], path[i][j] = cnt;
+            // 必须从前往后更新，这样同一个物体就可以被放进去多次
+            if (j >= weight[i - 1] && dp[j - weight[i - 1]] + value[i - 1] > dp[j]) {
+                cnt ++;
+                dp[j] = dp[j - weight[i - 1]] + value[i - 1];
+                path[i][j] = cnt;
+            }
         }
     }
 
@@ -63,29 +66,6 @@ int fullBag1(vector<int>& weight, vector<int>& value, int capacity) {
 
     return dp[capacity];
 }
-
-// 完全背包-多次遍历的方式，这种方法性能开销较大，舍去
-// 有N件物品和一个最多能背重量为W的背包。第i件物品的重量是weight[i]，得到的价值是value[i] 。每件物品都有无限个（也就是可以放入背包多次），求解将哪些物品装入背包里物品价值总和最大。
-// 和 0-1 背包的区别是每件物品有无限个
-// 处理方式：只要容量放得下，就去遍历所有可以塞的情况
-int fullBagBan(vector<int>& weight, vector<int>& value, int capacity) {
-    int len = weight.size();
-    vector<int> dp(capacity + 1, 0);
-    for (int i = 1; i <= len; ++i) {
-        for (int j = capacity; j >= weight[i - 1]; j--) {
-            // 处理方式1：只要容量放得下，就去遍历所有可以塞的情况
-            int cnt = j / weight[i - 1];
-//            dp[j] = dp[j];  // 更新为上一个，一维数组可与忽略这一步
-            for (int k = 1; k <= cnt; ++k) {
-                dp[j] = max(dp[j], dp[j - k * weight[i - 1]] + value[i - 1] * k);
-            }
-        }
-    }
-
-    return dp[capacity];
-}
-
-
 
 int main() {
     vector<int> weight{1,2,3,4};
