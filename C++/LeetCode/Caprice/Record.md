@@ -30,6 +30,7 @@
   - 6-canPartition 转换为背包问题，是否能把total/2的背包填满
   - 10-fullBag 完全背包问题，注意和01背包的区别
   - 12-combinationSum4 比较不一样的做法，求排列需要先遍历背包容量而不是先遍历物品
+  - 18-maxProfitIII 状态转移递推
 - 10-MonotonicStack
   - 3-trap 接雨水，经典题目，先从后往前遍历记录每个位置后面的最大值，再从前往后遍历计算结果
   - 4-largestRectangleArea 和接雨水很相似，但也很常考的提，注意这里要用单调递增的栈来维护i之后或之前第一个高度小于height[i]的索引
