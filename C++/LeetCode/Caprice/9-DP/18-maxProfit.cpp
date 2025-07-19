@@ -102,12 +102,12 @@ int maxProfitIV(int k, vector<int>& prices) {
     }
     for (int i = 1; i < size; ++i) {
         dp[i][0] = dp[i - 1][0];
-        for (int j = 0; j < k; j++)
+        for (int j = 0; j < k; j++) {
             // 第j次持有股票：1-前一天就持有，2-今天才持有
             dp[i][2 * j + 1] = max(dp[i - 1][2 * j + 1], dp[i - 1][2 * j] - prices[i]);
-        for (int j = 0; j < k; j++)
             // 第j次不持有股票：1-前一天就不持有，2-今天才不持有
-            dp[i][2 * j + 2] = max(dp[i - 1][2 * j + 2], dp[i - 1][2 * j + 1] + prices[i]);
+            dp[i][2 * j + 2] = max(dp[i - 1][2 * j + 2], dp[i - 1][2 * j + 1] + prices[i]);       
+        }
     }
     return dp[size - 1][2 * k];
 }
