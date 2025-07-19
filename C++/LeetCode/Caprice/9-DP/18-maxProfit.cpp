@@ -6,6 +6,10 @@
 // 买卖股票的最佳时机II：https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/
 // 买卖股票的最佳时机III：https://www.programmercarl.com/0123.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAIII.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE
 // 买卖股票的最佳时机III：https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iii/description/
+// 买卖股票的最佳时机IV：https://www.programmercarl.com/0188.%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BAIV.html
+// 买卖股票的最佳时机IV：https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-iv/description/
+// 买卖股票的最佳时间含冷冻期：https://www.programmercarl.com/0309.%E6%9C%80%E4%BD%B3%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E6%97%B6%E6%9C%BA%E5%90%AB%E5%86%B7%E5%86%BB%E6%9C%9F.html
+// 买卖股票的最佳时间含冷冻期：https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-with-cooldown/description/
 //
 
 #include <iostream>
@@ -73,16 +77,77 @@ int maxProfitIII2(vector<int> &prices) {
     dp[0][3] = -prices[0];
     for (int i = 1; i < size; ++i) {
         dp[i][0] = dp[i - 1][0];
-        // 第一次持有股票，可以是续前一天的持有状态，也可以是今天才持有的
+        // 第一次持有股票：1-前一天就持有 2-今天才持有
         dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
-        // 第一次不持有股票，可以延续前一天的不持有状态，也可以是今天才不持有的
+        // 第一次不持有股票：1-前一天就不持有状态 2-今天才不持有
         dp[i][2] = max(dp[i - 1][2], dp[i - 1][1] + prices[i]);
-        // 第二次持有股票，可以是延续前一天的持有状态，也可以是今天才不持有的
+        // 第二次持有股票：1-前一天就持有 2-今天才持有
         dp[i][3] = max(dp[i - 1][3], dp[i - 1][2] - prices[i]);
-        // 第二次不持有股票，可以是延续前一天的不持有状态，也可以是是今天才不持有的
+        // 第二次不持有股票：1-前一天就不持有 2-今天才不持有
         dp[i][4] = max(dp[i - 1][4], dp[i - 1][3] + prices[i]);
     }
     return dp[size - 1][4];
+}
+
+// 最多买k次22
+int maxProfitIV(int k, vector<int>& prices) {
+    int size = prices.size();
+    if (size == 0) return 0;
+    // 0-无操作
+    // 2n+1 第n次持有股票
+    // 2n+2 第n次不持有股票
+    vector<vector<int>> dp(size, vector<int>(2 * k + 1, 0));
+    for (int i = 0; i < k; i++) {
+        dp[0][2 * i + 1] = -prices[0];
+    }
+    for (int i = 1; i < size; ++i) {
+        dp[i][0] = dp[i - 1][0];
+        for (int j = 0; j < k; j++)
+            // 第j次持有股票：1-前一天就持有，2-今天才持有
+            dp[i][2 * j + 1] = max(dp[i - 1][2 * j + 1], dp[i - 1][2 * j] - prices[i]);
+        for (int j = 0; j < k; j++)
+            // 第j次不持有股票：1-前一天就不持有，2-今天才不持有
+            dp[i][2 * j + 2] = max(dp[i - 1][2 * j + 2], dp[i - 1][2 * j + 1] + prices[i]);
+    }
+    return dp[size - 1][2 * k];
+}
+
+// 含1天冷冻期
+int maxProfitWithCd(vector<int>& prices) {
+    int size = prices.size();
+    if (size == 0) return 0;
+    // 状态转移
+    // 0-持有股票
+    // 1-不持有股票，且处于冷冻期
+    // 2-不持有股票，且不处于冷冻期
+    vector<vector<int>> dp(size, vector<int>(3, 0));
+    dp[0][0] = -prices[0];
+    for (int i = 1; i < size; i++) {
+        // 持有股票：1-前一天持有 2-今天才持有
+        dp[i][0] = max(dp[i - 1][0], dp[i - 1][2] - prices[i]);
+        // 不持有股票，且处于冷冻期：前一天卖出
+        dp[i][1] = dp[i - 1][0] + prices[i];
+        // 不持有股票，且不处于冷冻期：1-前一天就不持有且处于不处于冷冻期 2-前一天不持有且处于冷冻期
+        dp[i][2] = max(dp[i - 1][2], dp[i - 1][1]);
+    }
+    return max(dp[size - 1][1], dp[size - 1][2]);
+}
+
+int maxProfitWithFee(vector<int>& prices, int fee) {
+    int size = prices.size();
+    if (size == 0) return 0;
+    // 状态转移
+    // 0-持有股票
+    // 1-不持有股票
+    vector<vector<int>> dp(size, vector<int>(2, 0));
+    dp[0][0] = -prices[0] - fee;
+    for (int i = 1; i < size; ++i) {
+        // 持有股票: 1-前一天持有 2-今天才持有
+        dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] - prices[i] - fee);
+        // 不持有股票：1-前一天就不持有 2-今天刚卖出
+        dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] + prices[i]);
+    }
+    return dp[size - 1][1];
 }
 
 int main() {
