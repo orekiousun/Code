@@ -20,11 +20,14 @@ struct TreeNode {
 };
 
 // 0-无覆盖 1-摄像头 2-有覆盖
+// 左右根后续遍历
 int traverse(TreeNode* cur, int& ret) {
     if (cur == nullptr) return 2;
     int left = traverse(cur->left, ret);    // 左
     int right = traverse(cur->right, ret);  // 右
+    // 情况1：左右节点都有覆盖，不用放摄像头了，此处无覆盖
     if (left == 2 && right == 2) return 0;
+    // 情况2：左右中有一个无覆盖，需要放摄像头
     else if (left == 0 || right == 0) {
         ret++;
         return 1;
