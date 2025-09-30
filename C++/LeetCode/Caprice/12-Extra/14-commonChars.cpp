@@ -51,19 +51,23 @@ vector<string> commonChars2(vector<string>& words) {
     int size = words.size();
     array<int, 26> cntArr;
     cntArr.fill(0);
-    for (char c = 'a'; c <= 'z'; c++) {
-        int num = -1;
-        for (auto word: words) {
-            int cnt = 0;
-            for (auto c_ : word) {
-                if (c_ == c) cnt++;
-            }
-            num = num == -1 ? cnt : min(num, cnt);
-        }
-        
-        if (num != -1) cntArr[c - 'a'] = num;
+    // 初始化array
+    for (auto c : words[0]) {
+        cntArr[c - 'a']++;
     }
 
+    for (int i = 1; i < size; i++) {
+        string word = words[i];
+        array<int, 26> tmpCntArr;
+        tmpCntArr.fill(0);
+        for (auto c : word) {
+            tmpCntArr[c - 'a']++;
+        }
+        for (int i = 0; i < 26; i++) {
+            cntArr[i] = min(cntArr[i], tmpCntArr[i]);
+        }
+    }
+    
     vector<string> ret;
     for (int i = 0; i < 26; i++) {
         int num = cntArr[i];
