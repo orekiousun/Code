@@ -8,6 +8,7 @@
 using namespace std;
 #include <vector>
 #include <algorithm>
+#include <array>
 
 bool lemonadeChange(vector<int>& bills) {
     array<int, 3> arr;
