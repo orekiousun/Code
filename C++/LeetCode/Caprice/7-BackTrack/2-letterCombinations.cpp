@@ -10,37 +10,39 @@ using namespace std;
 #include <string>
 #include <unordered_map>
 
-void backtrack(vector<string>& ret, string& str, string& digits, int startIdx, unordered_map<char, vector<char>>& map) {
+static const unordered_map<char, string> phoneMap{
+        {'2', "abc"},
+        {'3', "def"},
+        {'4', "ghi"},
+        {'5', "jkl"},
+        {'6', "mno"},
+        {'7', "pqrs"},
+        {'8', "tuv"},
+        {'9', "wxyz"}
+};
+
+void backtrack(vector<string> &ret, string &str, string &digits, int startIdx) {
     if (startIdx >= digits.size()) {
         ret.push_back(str);
         return;
     }
 
-    vector<char> charL = map[digits[startIdx]];
-    for (int i = 0; i < charL.size(); ++i) {
-        str[startIdx] = charL[i];
-        backtrack(ret, str, digits, startIdx + 1, map);
+    string phoneStr = phoneMap.at(digits[startIdx]);
+    for (int i = 0; i < phoneStr.size(); ++i) {
+        str[startIdx] = phoneStr[i];
+        backtrack(ret, str, digits, startIdx + 1);
     }
 }
 
 vector<string> letterCombinations(string digits) {
-    unordered_map<char, vector<char>> map;
-    map['2'] = vector<char>{'a', 'b', 'c'};
-    map['3'] = vector<char>{'d', 'e', 'f'};
-    map['4'] = vector<char>{'g', 'h', 'i'};
-    map['5'] = vector<char>{'j', 'k', 'l'};
-    map['6'] = vector<char>{'m', 'n', 'o'};
-    map['7'] = vector<char>{'p', 'q', 'r', 's'};
-    map['8'] = vector<char>{'t', 'u', 'v'};
-    map['9'] = vector<char>{'w', 'x', 'y', 'z'};
     vector<string> ret;
     if (digits.size() == 0) return ret;
     string str(digits.size(), ' ');
-    backtrack(ret, str, digits, 0, map);
+    backtrack(ret, str, digits, 0);
     return ret;
 }
 
 int main() {
-
+    letterCombinations("23");
     return 0;
 }

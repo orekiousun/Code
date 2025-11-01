@@ -16,6 +16,12 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// 快慢指针，相遇的点再和头节点走相同的步数，即是入环的第一个节点
+// 假设从head走到相遇需要m步，从相遇走到再次相遇（即成环）需要n步
+// 即有 m + an = 2(m + bn)，可得m = (b - 2a)n
+// 需要证明：m + an + m = m + kn
+// 替换最后一个m，可得 m + an + (b - 2a)n = m + kn
+// m + (b - a)n = m + kn，存在k = b - a成立
 ListNode *detectCycle(ListNode *head) {
     ListNode* fast = head;
     ListNode* slow = head;

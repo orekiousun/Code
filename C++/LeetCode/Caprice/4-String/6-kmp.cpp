@@ -10,8 +10,8 @@ using namespace std;
 #include <string>
 
 // 构造next数组--记录needle中的前缀表
-// 记录了最长相同的前缀和后缀长度
 // 即查找到i时，重新开始查找从数组的哪个索引开始找
+// 此时可以保证s[0:next[i]] == s[i-next[i]:i]
 vector<int> getNext(string s) {
     vector<int> next(s.size(), 0);
     // i指向文本起始串的位置，j指向模式起始串的位置

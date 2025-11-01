@@ -13,7 +13,7 @@ using namespace std;
 
 int findMaxForm(vector<string>& strs, int m, int n) {
     int len = strs.size();
-    // dp[i][j][k]表示使用前i个字符串，最多有m个0和n个1的最大子集个数
+    // dp[i][j][k]表示使用前i个字符串，最多有j个0和k个1的最大子集个数
     vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
     for (int i = 1; i <= len; ++i) {
         // 统计里面0和1的个数

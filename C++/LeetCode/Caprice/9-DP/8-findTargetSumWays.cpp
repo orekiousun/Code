@@ -16,7 +16,7 @@ int findTargetSumWays(vector<int>& nums, int target) {
     int sum = accumulate(nums.begin(), nums.end(), 0);
     if (target > sum || target < -sum) return 0;
     int len = nums.size();
-    // dp[i][j]表示使用前i个数，运算结果=target的个数
+    // dp[i][j]表示使用前i个数，运算结果=j的个数
     vector<int> dp(sum * 2 + 1, 0);
     vector<int> pre = dp;
     pre[sum] = 1;

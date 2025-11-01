@@ -22,6 +22,7 @@ struct TreeNode {
 //      3.所有左子树和右子树自身必须也是二叉搜索树。
 // 注意还需要验证条件1和条件2
 // 也可以使用中序遍历，将数据全部遍历出来，最后判断数组有序即可
+// 限定左边界和右边界，以保证左子树只包含小于当前节点的数且右子树只包含大于当前节点的数
 bool isValidBST(TreeNode* root, long long left, long long right) {
     if (root == nullptr) return true;
     if (root->val <= left or root->val >= right) return false;
