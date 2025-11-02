@@ -1,7 +1,7 @@
 //
 // Created by ousun on 2025/5/3.
 // 沉没孤岛：https://www.programmercarl.com/kamacoder/0102.%E6%B2%89%E6%B2%A1%E5%AD%A4%E5%B2%9B.html
-// 沉没孤岛：https://www.programmercarl.com/kamacoder/0102.%E6%B2%89%E6%B2%A1%E5%AD%A4%E5%B2%9B.html
+// 沉没孤岛：https://kamacoder.com/problempage.php?pid=1174
 // 孤岛的总面积：https://www.programmercarl.com/kamacoder/0101.%E5%AD%A4%E5%B2%9B%E7%9A%84%E6%80%BB%E9%9D%A2%E7%A7%AF.html#%E6%80%9D%E8%B7%AF
 // 孤岛的总面积：https://kamacoder.com/problempage.php?pid=1173
 //

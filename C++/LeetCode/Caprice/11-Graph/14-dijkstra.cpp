@@ -1,5 +1,7 @@
 //
 // Created by ousun on 2025/5/5.
+// dijkstra：https://www.programmercarl.com/kamacoder/0047.%E5%8F%82%E4%BC%9Adijkstra%E6%9C%B4%E7%B4%A0.html#%E6%80%9D%E8%B7%AF
+// dijkstra：https://kamacoder.com/problempage.php?pid=1047
 //
 
 #include <iostream>
